@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: PokemonISee_production
-  username: PokemonISee
-  password: <%= ENV["POKEMONISEE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
