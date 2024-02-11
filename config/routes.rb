@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  get 'tops/index'
+  get 'tops#index'
 end
