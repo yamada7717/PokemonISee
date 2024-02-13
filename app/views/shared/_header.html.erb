@@ -1,0 +1,31 @@
+<header class="text-gray-600 body-font bg-white fixed inset-x-0 top-0 z-50">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <%= link_to root_path, class: "flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" do %>
+      <h1 class="ml-3 text-xl">PokemonISee</h1>
+    <% end %>
+    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+      <% if logged_in? %>
+        <div class="dropdown relative">
+          <% if current_user.profile_image.present? %>
+            <button class='dropdown-button py-2 px-4 rounded focus:outline-none focus:ring' role='button'>
+              <%= image_tag current_user.profile_image, alt: "アイコン", class: "w-8 h-8 rounded-full" %>
+            </button>
+          <% else %>
+            <button class='dropdown-button text-gray-700 py-2 px-4 rounded focus:outline-none focus:ring' role='button'>
+              <%= current_user.name %>
+            </button>
+          <% end %>
+          <div class="dropdown-content hidden absolute bg-white shadow-md mt-1 rounded w-40">
+            <%= link_to "マイページ", "#", class: "block px-4 py-2 text-gray-700 hover:bg-blue-100" %>
+            <%= link_to "投稿する", "#", class: "block px-4 py-2 text-gray-700 hover:bg-blue-100" %>
+            <%= link_to "構築記事", "#", class: "block px-4 py-2 text-gray-700 hover:bg-blue-100" %>
+            <%= link_to "ログアウト", "#", method: :delete, class: "block px-4 py-2 text-gray-700 hover:bg-blue-100" %>
+          </div>
+        </div>
+      <% else %>
+        <%= link_to "ログイン", login_path, class: "text-white py-2 px-4 rounded bg-blue-500 hover:bg-blue-600 ml-2" %>
+        <%= link_to "新規登録", new_user_path, class: "text-white py-2 px-4 rounded bg-blue-500 hover:bg-blue-600 ml-2" %>
+      <% end %>
+    </nav>
+  </div>
+</header>
