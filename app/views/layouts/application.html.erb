@@ -11,9 +11,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen bg-BodyColor">
     <%= render "shared/header"%>
-    <%= yield %>
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
     <%= render "shared/footer"%>
   </body>
 </html>
