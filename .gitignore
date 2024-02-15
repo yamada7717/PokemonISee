@@ -32,3 +32,6 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# 環境変数を含むファイルを無視
+.env
