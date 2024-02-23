@@ -51,6 +51,10 @@ Style/EmptyMethod:
 Style/BlockComments:
   Enabled: false
 
+# 単一行の条件式での修飾子形式を強制しない
+Style/IfUnlessModifier:
+  Enabled: false
+
 # コントローラ等のモジュールをネストしての宣言
 Style/ClassAndModuleChildren:
   Enabled: false
@@ -70,7 +74,6 @@ Style/StringLiterals:
 # シンボルによる配列の%記法のチェック
 Style/SymbolArray:
   Enabled: false
-  # EnforcedStyle: brackets
 
 # 文字列による配列の%記法のチェック
 Style/WordArray:
