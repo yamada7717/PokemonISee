@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   private
 
-  def profile_image
+  def validate_profile_image
     unless profile_image.blob.content_type.in?(%w[image/jpeg image/png image/gif])
       errors.add(:profile_image, 'はJPEG、PNG、またはGIF形式でなければなりません。')
     end
