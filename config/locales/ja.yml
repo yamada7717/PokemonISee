@@ -1,0 +1,27 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワードの確認"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "を入力してください"
+              invalid: "の形式が不正です"
+              taken: "は既に使用されています"
+            password:
+              blank: "を入力してください"
+              too_short: "は%{count}文字以上である必要があります"
+            password_confirmation:
+              blank: "をしてください"
+            name:
+              blank: "を入力してください"
+            introduction:
+              too_long: "自己紹介は%{count}文字以内で入力してください"
