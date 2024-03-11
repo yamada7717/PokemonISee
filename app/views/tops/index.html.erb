@@ -1,7 +1,7 @@
 <div class="bg-white">
   <% flash.each do |key, message| %>
     <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-      <span class="font-medium">Info:</span> <%= message %>
+      <span class="font-medium"><%= message %></span>
     </div>
   <% end %>
   <div class="relative isolate px-6 pt-14 lg:px-8">

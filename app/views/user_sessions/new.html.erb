@@ -2,8 +2,13 @@
   <div class="sm:mx-auto sm:w-full sm:max-w-md mt-10">
     <h2 class="mt-6 text-3xl font-extrabold text-center text-neutral-600">ログイン</h2>
   </div>
+  <% flash.each do |key, message| %>
+    <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+      <span class="font-medium"><%= message %></span>
+    </div>
+  <% end %>
   <div class="mt-8 px-4 py-8">
-    <%= form_with(url: login_path, method: :post, local: true, data: { turbo: false }) do |form| %>
+    <%= form_with(url: login_path, method: :post, local: true, html: { novalidate: true }, data: { turbo: false }) do |form| %>
       <div class="space-y-6">
         <div>
           <%= form.label :email, "メールアドレス", class: "block text-sm font-medium text-gray-700" %>
