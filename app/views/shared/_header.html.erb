@@ -16,9 +16,9 @@
             </button>
           <% end %>
           <div class="dropdown-content hidden absolute bg-white shadow-md mt-1 rounded w-40">
-            <%= link_to "マイページ", "#", class: "block px-4 py-2 text-gray-700 hover:bg-blue-100" %>
-            <%= link_to "投稿する", "#", class: "block px-4 py-2 text-gray-700 hover:bg-blue-100" %>
+            <%= link_to "マイページ", mypage_user_path(current_user), class: "block px-4 py-2 text-gray-700 hover:bg-blue-100" %>
             <%= link_to "構築記事", "#", class: "block px-4 py-2 text-gray-700 hover:bg-blue-100" %>
+            <%= link_to "投稿する", "#", class: "block px-4 py-2 text-gray-700 hover:bg-blue-100" %>
             <%= link_to "ログアウト", "#", method: :delete, class: "block px-4 py-2 text-gray-700 hover:bg-blue-100" %>
           </div>
         </div>

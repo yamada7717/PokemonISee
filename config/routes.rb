@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   get 'logout', to: 'user_sessions#destroy'
   get '/users', to: redirect('/users/new')
-  resources :users, only: %i[new create show edit update destroy]
+  resources :users, only: %i[new create show edit update destroy] do
+    member do
+      get :mypage
+    end
+  end
 end
