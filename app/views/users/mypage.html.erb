@@ -1,11 +1,18 @@
-<div class="container flex-grow mx-auto p-6 md:flex mt-24">
-  <div class="flex flex-col items-center mb-6 md:mb-0 md:mr-6 mr-2 bg-white p-4 shadow rounded-lg h-[250px] w-[250px]">
-    <h2 class="text-xl font-bold mb-1"> <%= @user.name %> </h2>
-    <p class="text-sm text-gray-600 break-words mb-2"><%= @user.introduction %></p>
+<div class="container flex-grow mx-auto p-6 md:flex mt-[124px]">
+  <div class="flex flex-col items-start mb-6 md:mb-0 md:mr-6 mr-2 bg-white p-4 shadow rounded-lg h-[250px] w-[250px]">
+    <div class="ml-4">
+      <p class="text-xl mb-2 "><%= @user.name %></p>
+      <p class="block text-sm font-medium text-gray-900">自己紹介</p>
+    </div>
+    <div class="mt-2 ml-4">
+      <p class="text-sm text-gray-600 break-words"><%= @user.introduction %></p>
+    </div>
     <div class="flex space-x-4 text-sm mb-2">
       <!-- 後ほどフォロー機能を追加 -->
     </div>
-    <%= link_to 'プロフィール編集', edit_user_path(current_user), class: "mt-4 px-3 py-2 bg-blue-500 text-white rounded text-sm" %>
+    <div class="mt-4 ml-2">
+      <%= link_to "プロフィールを編集", edit_user_path(current_user), class: "mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 text-sm" %>
+    </div>
   </div>
   <div class="flex-1 bg-white p-4 shadow rounded-lg">
     <div class="mb-2 flex flex-col md:flex-row md:flex-wrap items-center">
