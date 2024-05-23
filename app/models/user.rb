@@ -3,12 +3,12 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   validates :name, length: { maximum: 16 }, presence: true
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password, length: { minimum: 8 }, if: -> { new_record? || changes[:password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:password] }
   validates :introduction, length: { maximum: 255 }, allow_blank: true
-  validate :profile_image, if: -> { profile_image.attached? }
+  validate :validate_profile_image, if: -> { profile_image.attached? }
 
   private
 

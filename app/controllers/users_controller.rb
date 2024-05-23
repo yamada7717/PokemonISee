@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to mypage_user_path(@user), notice: "ユーザー情報を更新しました"
     else
+      @user.reload
       render :edit
     end
   end

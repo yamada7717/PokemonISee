@@ -6,6 +6,8 @@ ja:
       user:
         name: "ユーザー名"
         email: "メールアドレス"
+        profile_image: "プロフィール画像"
+        introduction: "自己紹介"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
     errors:
@@ -24,6 +26,6 @@ ja:
               confirmation: "がパスワードと一致しません"
             name:
               blank: "を入力してください"
-              too_long: "は30文字以内で入力してください"
+              too_long: "は16文字以内で入力してください"
             introduction:
               too_long: "は255文字以内で入力してください"
