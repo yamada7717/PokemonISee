@@ -1,11 +1,14 @@
 <div class="container flex-grow mx-auto p-6 md:flex mt-[124px]">
   <div class="flex flex-col items-start mb-6 md:mb-0 md:mr-6 mr-2 bg-white p-4 shadow rounded-lg w-[250px] max-h-[400px] overflow-auto">
     <div class="ml-4">
-      <p class="text-xl mb-2 "><%= @user.name %></p>
+      <% if @user.profile_image.present? %>
+        <%= image_tag @user.profile_image, alt: "アイコン", class: "w-8 h-8 rounded-full" %>
+      <% end %>
+      <p class="text-sm mb-2 "><%= @user.name %></p>
       <p class="block text-sm font-medium text-gray-900">自己紹介</p>
     </div>
     <div class="mt-2 ml-4">
-      <p class="text-sm text-gray-600 break-words"><%= @user.introduction %></p>
+      <p class="text-sm text-gray-600 leading-relaxed break-words"><%= @user.introduction %></p>
     </div>
     <div class="flex space-x-4 text-sm mb-2">
       <!-- 後ほどフォロー機能を追加 -->
@@ -14,7 +17,7 @@
       <%= link_to "プロフィールを編集", edit_user_path(current_user), class: "mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 text-sm" %>
     </div>
   </div>
-  <div class="flex-1 bg-white p-4 shadow rounded-lg">
+  <div class="flex-1 bg-white p-4 shadow rounded-lg overflow-auto">
     <div class="mb-2 flex flex-col md:flex-row md:flex-wrap items-center">
       <!-- 後ほど各記事URLを設置 -->
     </div>

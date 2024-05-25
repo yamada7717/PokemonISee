@@ -2,6 +2,8 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   has_one_attached :profile_image
 
+  attr_accessor :remove_profile_image
+
   validates :name, length: { maximum: 16 }, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password, length: { minimum: 8 }, if: -> { new_record? || changes[:password] }

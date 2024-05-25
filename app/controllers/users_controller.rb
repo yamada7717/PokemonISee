@@ -28,6 +28,10 @@ class UsersController < ApplicationController
       user_params.delete(:password_confirmation)
     end
 
+    if user_params[:remove_profile_image] == "消去"
+      @user.profile_image.purge
+    end
+
     if @user.update(user_params)
       redirect_to mypage_user_path(@user), notice: "ユーザー情報を更新しました"
     else
@@ -43,6 +47,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :profile_image, :introduction)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :profile_image, :introduction, :remove_profile_image)
   end
 end
