@@ -16,4 +16,15 @@ RSpec.describe "Users", type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe "GET /mypage" do
+    before do
+      post login_path, params: { email: user.email, password: 'password123' }
+    end
+
+    it "ユーザーのマイページが正常に表示されること" do
+      get mypage_user_path(user)
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
