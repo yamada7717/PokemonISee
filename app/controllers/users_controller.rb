@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, only: %i[edit update mypage]
+  before_action :set_current_user, only: %i[edit update mypage]
 
   def show
     @user = User.find(params[:id])
@@ -10,7 +11,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
   end
 
   def create
@@ -24,7 +24,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
     if user_params[:password].blank?
       user_params.delete(:password)
       user_params.delete(:password_confirmation)
@@ -43,10 +42,13 @@ class UsersController < ApplicationController
   end
 
   def mypage
-    @user = current_user
   end
 
   private
+
+  def set_current_user
+    @user = current_user
+  end
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :name, :profile_image, :introduction, :remove_profile_image)
