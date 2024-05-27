@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: %i[edit update mypage]
+
   def show
     @user = User.find(params[:id])
   end
