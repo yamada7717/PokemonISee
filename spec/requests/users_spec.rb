@@ -18,13 +18,22 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "GET /mypage" do
-    before do
-      post login_path, params: { email: user.email, password: 'password123' }
+    context "ログインしている場合" do
+      before do
+        post login_path, params: { email: user.email, password: 'password123' }
+      end
+
+      it "ユーザーのマイページが正常に表示されること" do
+        get mypage_user_path(user)
+        expect(response).to have_http_status(:success)
+      end
     end
 
-    it "ユーザーのマイページが正常に表示されること" do
-      get mypage_user_path(user)
-      expect(response).to have_http_status(:success)
+    context "ログインしていない場合" do
+      it "TOPページにリダイレクトされる" do
+        get mypage_user_path(user)
+        expect(response).to redirect_to(root_path)
+      end
     end
   end
 end

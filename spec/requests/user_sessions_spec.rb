@@ -27,7 +27,7 @@ RSpec.describe "UserSessions", type: :request do
   end
 
   describe 'DELETE /logout' do
-    it 'ログアウトに成功し、ルートページにリダイレクトされること' do
+    it 'ログアウトに成功し、TOPページにリダイレクトされること' do
       get logout_path
       expect(response).to redirect_to(root_path)
       expect(session[:user_id]).to be_nil
