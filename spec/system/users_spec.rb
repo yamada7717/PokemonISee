@@ -31,4 +31,37 @@ RSpec.describe 'User', type: :system do
       end
     end
   end
+
+  describe 'mypage' do
+    let(:user) { create(:user) }
+
+    context 'ログインしている場合' do
+      before do
+        visit login_path
+        fill_in "メールアドレス", with: user.email
+        fill_in "パスワード", with: "password123"
+        click_button "ログイン"
+        visit mypage_user_path(user)
+      end
+
+      it 'ログインユーザーとマイページpathが一致している' do
+        expect(current_path).to eq(mypage_user_path(user))
+      end
+
+      it 'ユーザーネームが表示される' do
+        expect(page).to have_content(user.name)
+      end
+
+      it '自己紹介が表示される' do
+        expect(page).to have_content(user.introduction)
+      end
+    end
+
+    context 'ログインしていない場合' do
+      it 'TOPページにリダイレクトされる' do
+        visit mypage_user_path(user)
+        expect(current_path).to eq(root_path)
+      end
+    end
+  end
 end
