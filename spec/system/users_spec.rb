@@ -32,7 +32,7 @@ RSpec.describe 'User', type: :system do
     end
   end
 
-  describe 'mypage' do
+  describe 'マイページ' do
     let(:user) { create(:user) }
 
     context 'ログインしている場合' do
@@ -60,6 +60,50 @@ RSpec.describe 'User', type: :system do
     context 'ログインしていない場合' do
       it 'TOPページにリダイレクトされる' do
         visit mypage_user_path(user)
+        expect(current_path).to eq(root_path)
+      end
+    end
+  end
+
+  describe 'プロフィール編集' do
+    let(:user) { create(:user) }
+
+    context 'ログインしている場合' do
+      before do
+        visit login_path
+        fill_in "メールアドレス", with: user.email
+        fill_in "パスワード", with: "password123"
+        click_button "ログイン"
+        visit edit_user_path(user)
+      end
+
+      it 'ユーザー名が表示される' do
+        expect(page).to have_content(user.name)
+      end
+
+      it '自己紹介が表示される' do
+        expect(page).to have_content(user.introduction)
+      end
+
+      it 'メールアドレスが表示される' do
+        expect(find_field("メールアドレス").value).to eq(user.email)
+      end
+
+      it 'ユーザー情報が更新される' do
+        fill_in "ユーザー名", with: "更新後のユーザー名"
+        fill_in "自己紹介", with: "更新後の自己紹介"
+        click_button "更新"
+        page.driver.browser.switch_to.alert.accept
+        expect(current_path).to eq(mypage_user_path(user))
+        user.reload
+        expect(user.name).to eq("更新後のユーザー名")
+        expect(user.introduction).to eq("更新後の自己紹介")
+      end
+    end
+
+    context 'ログインしていない場合' do
+      it 'TOPページにリダイレクトされる' do
+        visit edit_user_path(user)
         expect(current_path).to eq(root_path)
       end
     end
