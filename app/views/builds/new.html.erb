@@ -1,0 +1,63 @@
+<div class="container flex-grow mx-auto p-6 bg-white rounded-lg mt-[124px]">
+  <div class="mx-auto px-4 md:px-8">
+    <h2 class="mb-6 text-center text-2xl font-bold text-gray-800 lg:text-3xl">構築記事の登録</h2>
+    <%= form_with(model: @build, local: true, data: { turbo: false } ,class: "space-y-6") do |form| %>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <%= form.label :game_type, "ゲームの種類", class: "block mb-2 text-sm font-medium text-gray-700" %>
+          <p class="rounded border bg-gray-50 px-3 py-2 text-gray-800">SV</p>
+          <%= form.hidden_field :game_type, value: "SV" %>
+        </div>
+        <div>
+          <%= form.label :title, "構築タイトル", class: "block mb-2 text-sm font-medium text-gray-700" %>
+          <%= form.text_field :title, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none focus:ring-indigo-500" %>
+        </div>
+        <div class="md:col-span-2">
+          <%= form.label :introduction, "構築紹介", class: "block mb-2 text-sm font-medium text-gray-700" %>
+          <%= form.text_area :introduction, rows: 6, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none focus:ring-indigo-500" %>
+        </div>
+        <div>
+          <%= form.label :battle_rank, "順位", class: "block mb-2 text-sm font-medium text-gray-700" %>
+          <%= form.number_field :battle_rank, min: 1, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none focus:ring-indigo-500" %>
+        </div>
+        <div>
+          <%= form.label :season, "シーズン", class: "block mb-2 text-sm font-medium text-gray-700" %>
+          <%= form.number_field :season, min: 1, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none focus:ring-indigo-500" %>
+        </div>
+        <div>
+          <%= form.label :battle_rate, "バトルレート", class: "block mb-2 text-sm font-medium text-gray-700" %>
+          <%= form.number_field :battle_rate, min: 0, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none focus:ring-indigo-500" %>
+        </div>
+        <div>
+          <%= form.label :blog_url, "ブログURL", class: "block mb-2 text-sm font-medium text-gray-700" %>
+          <%= form.text_field :blog_url, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none focus:ring-indigo-500" %>
+        </div>
+        <div class="md:col-span-2">
+          <%= form.label :battle_type, "バトルタイプ", class: "block mb-2 text-sm font-medium text-gray-700" %>
+          <div class="flex gap-4">
+            <label class="inline-flex items-center">
+              <%= form.radio_button :battle_type, 'シングル', class: "mr-2" %>シングル
+            </label>
+            <label class="inline-flex items-center">
+              <%= form.radio_button :battle_type, 'ダブル', class: "mr-2" %>ダブル
+            </label>
+          </div>
+        </div>
+        <div class="md:col-span-2">
+          <%= form.label :is_public, "記事の公開（登録後でも公開・非公開に変更可能です）", class: "block mb-2 text-sm font-medium text-gray-700" %>
+          <div class="flex gap-4">
+            <label class="inline-flex items-center">
+              <%= form.radio_button :is_public, true, class: "mr-2" %>公開する
+            </label>
+            <label class="inline-flex items-center">
+              <%= form.radio_button :is_public, false, class: "mr-2" %>非公開にする
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center mt-6">
+        <%= form.submit "登録する", class: "px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" %>
+      </div>
+    <% end %>
+  </div>
+</div>

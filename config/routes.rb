@@ -9,4 +9,5 @@ Rails.application.routes.draw do
       get :mypage
     end
   end
+  resources :builds
 end
