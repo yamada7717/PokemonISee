@@ -3,4 +3,35 @@
     <h2 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">シングルバトル</h2>
     <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">シングルバトルの構築記事一覧です</p>
   </div>
+  <div class="flex flex-wrap">
+    <% @builds.each do |build| %>
+      <div class="p-2 w-full">
+        <div class="flex flex-col sm:flex-row items-center border-gray-400 border p-4 rounded-lg bg-white">
+          <div class="flex items-center justify-center sm:justify-between w-full mb-4">
+            <div class="flex flex-col sm:flex-row items-center">
+              <div class="mr-4">
+                <p class="text-gray-500 title-font font-medium whitespace-nowrap">シーズン&nbsp;<%= build.season %></p>
+                <p class="text-gray-900 title-font font-medium whitespace-nowrap">順位&nbsp;<%= build.battle_rank %></p>
+              </div>
+              <div class="flex items-center">
+                <%= link_to user_path(build.user) do %>
+                  <img alt="team" class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-2" src="https://dummyimage.com/80x80">
+                <% end %>
+                <div>
+                  <%= link_to build.user.name, user_path(build.user), class: "text-gray-900 title-font font-medium whitespace-nowrap" %>
+                  <p class="text-gray-500 title-font text-xs whitespace-nowrap"><%= build.created_at.strftime("%Y年%m月%d日") %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold hover:text-blue-500 transition-colors duration-200 sm:hover:text-blue-500 text-center whitespace-nowrap mb-4">
+            <%= link_to build.title, build_path(build), class: "hover:border-blue-500 border-b-2 border-transparent" %>
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4 border-gray-300 w-full mt-4">
+            <!-- 後ほど登録されたポケモンを表示 -->
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
