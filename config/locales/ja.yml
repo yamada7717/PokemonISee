@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: "ユーザー"
+      build: "構築記事"
     attributes:
       user:
         name: "ユーザー名"
@@ -10,6 +11,12 @@ ja:
         introduction: "自己紹介"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
+      build:
+        title: "構築タイトル"
+        introduction: "構築紹介"
+        season: "シーズン"
+        battle_type: "バトル形式"
+        is_public: "公開設定"
     errors:
       models:
         user:
@@ -29,3 +36,16 @@ ja:
               too_long: "は16文字以内で入力してください"
             introduction:
               too_long: "は255文字以内で入力してください"
+        build:
+          attributes:
+            title:
+              blank: "を入力してください"
+              too_long: "は20文字以内で入力してください"
+            introduction:
+              too_long: "は2000文字以内で入力してください"
+            season:
+              blank: "を入力してください"
+            battle_type:
+              blank: "をどちらか選択してください"
+            is_public:
+              inclusion: "をどちらか選択してください"
