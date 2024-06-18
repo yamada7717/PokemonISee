@@ -123,3 +123,7 @@ Rails/FilePath:
 Style/HashSyntax:
   Exclude:
     - 'spec/**/*'
+
+# Presence?の使用を許容する
+Rails/Presence:
+  Enabled: false

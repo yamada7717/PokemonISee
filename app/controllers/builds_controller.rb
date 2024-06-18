@@ -5,6 +5,10 @@ class BuildsController < ApplicationController
     @builds = Build.all
   end
 
+  def show
+    @build = Build.find(params[:id])
+  end
+
   def new
     @build = Build.new
   end
