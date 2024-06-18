@@ -15,6 +15,7 @@ class BuildsController < ApplicationController
       # 後ほどポケモン登録機能を実装するため、一旦builds_pathにリダイレクト
       redirect_to builds_path
     else
+      Rails.logger.debug @build.errors.full_messages
       render :new
     end
   end

@@ -1,0 +1,58 @@
+# spec/system/builds_spec.rb
+require 'rails_helper'
+
+RSpec.describe 'Builds', type: :system do
+  let(:user) { create(:user) }
+  let(:valid_build) { build(:build, user: user) }
+  let(:invalid_build) { build(:build, title: '', introduction: '', user: user) }
+
+  describe '構築記事投稿の新規作成' do
+    context 'ログインしている場合' do
+      before do
+        visit login_path
+        fill_in 'メールアドレス', with: user.email
+        fill_in 'パスワード', with: 'password123'
+        click_button 'ログイン'
+        visit new_build_path
+      end
+
+      it '投稿ページに遷移できる' do
+        visit new_build_path
+        expect(page).to have_current_path(new_build_path)
+        expect(page).to have_content('構築記事の登録')
+      end
+
+      it '投稿処理が成功する' do
+        fill_in '構築タイトル', with: valid_build.title
+        fill_in '構築紹介', with: valid_build.introduction
+        fill_in 'シーズン', with: valid_build.season
+        choose valid_build.battle_type
+        fill_in '順位', with: valid_build.battle_rank
+        fill_in 'バトルレート', with: valid_build.battle_rate
+        fill_in 'ブログURL', with: valid_build.blog_url
+        choose '公開する' if valid_build.is_public
+        click_button '登録する'
+        build = Build.last
+        expect(build.title).to eq(valid_build.title)
+        expect(build.introduction).to eq(valid_build.introduction)
+        expect(build.user).to eq(user)
+        expect(page).to have_current_path(builds_path)
+      end
+
+      it '無効な入力で構築記事投稿作成が失敗する' do
+        visit new_build_path
+        fill_in '構築タイトル', with: invalid_build.title
+        fill_in '構築紹介', with: invalid_build.introduction
+        click_button '登録する'
+        expect(page).to have_current_path(builds_path)
+      end
+    end
+
+    context 'ログインしていない場合' do
+      it '新規構築記事投稿ページにアクセスするとトップページにリダイレクトされる' do
+        visit new_build_path
+        expect(page).to have_current_path(root_path)
+      end
+    end
+  end
+end
