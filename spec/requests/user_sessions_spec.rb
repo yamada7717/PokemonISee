@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe "UserSessions", type: :request do
   let!(:user) { create(:user) }
 
-  describe 'GET /login' do
+  describe 'ログインページ' do
     it 'ログインページが正常に表示されること' do
       get login_path
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe 'POST /login' do
+  describe 'ログインする際' do
     context '正しい認証情報の場合' do
       it 'ログインに成功し、リダイレクトされること' do
         post login_path, params: { email: user.email, password: 'password123', password_confirmation: 'password123' }
@@ -26,7 +26,7 @@ RSpec.describe "UserSessions", type: :request do
     end
   end
 
-  describe 'DELETE /logout' do
+  describe 'ログアウトする際' do
     it 'ログアウトに成功し、TOPページにリダイレクトされること' do
       get logout_path
       expect(response).to redirect_to(root_path)
