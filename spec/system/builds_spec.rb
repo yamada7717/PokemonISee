@@ -3,8 +3,8 @@ require 'rails_helper'
 
 RSpec.describe 'Builds', type: :system do
   let(:user) { create(:user) }
-  let(:valid_build) { build(:build, user: user) }
-  let(:invalid_build) { build(:build, title: '', introduction: '', user: user) }
+  let(:valid_build) { create(:build, user: user) }
+  let!(:build) { create(:build, user: user) }
 
   describe '構築記事投稿の新規作成' do
     context 'ログインしている場合' do
@@ -41,8 +41,8 @@ RSpec.describe 'Builds', type: :system do
 
       it '無効な入力で構築記事投稿作成が失敗する' do
         visit new_build_path
-        fill_in '構築タイトル', with: invalid_build.title
-        fill_in '構築紹介', with: invalid_build.introduction
+        fill_in '構築タイトル', with: ''
+        fill_in '構築紹介', with: ''
         click_button '登録する'
         expect(page).to have_current_path(builds_path)
       end
@@ -51,6 +51,41 @@ RSpec.describe 'Builds', type: :system do
     context 'ログインしていない場合' do
       it '新規構築記事投稿ページにアクセスするとトップページにリダイレクトされる' do
         visit new_build_path
+        expect(page).to have_current_path(root_path)
+      end
+    end
+  end
+
+  describe '構築記事編集ページ' do
+    context 'ログインしている場合' do
+      before do
+        visit login_path
+        fill_in 'メールアドレス', with: user.email
+        fill_in 'パスワード', with: 'password123'
+        click_button 'ログイン'
+        visit edit_build_path(build)
+      end
+
+      it '編集ページに遷移できる' do
+        expect(page).to have_current_path(edit_build_path(build))
+        expect(page).to have_content('構築記事の編集')
+      end
+
+      it '更新できる' do
+        fill_in '構築タイトル', with: '新しいタイトル'
+        fill_in '構築紹介', with: '新しい紹介'
+        click_button '更新'
+        page.driver.browser.switch_to.alert.accept
+        expect(page).to have_current_path(build_path(build))
+        build.reload
+        expect(build.title).to eq('新しいタイトル')
+        expect(build.introduction).to eq('新しい紹介')
+      end
+    end
+
+    context 'ログインしていない場合' do
+      it '編集ページにアクセスするとトップページにリダイレクトされる' do
+        visit edit_build_path(build)
         expect(page).to have_current_path(root_path)
       end
     end
