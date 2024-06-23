@@ -90,4 +90,63 @@ RSpec.describe 'Builds', type: :system do
       end
     end
   end
+
+  describe '構築記事詳細ページ' do
+    context 'ログインしている場合' do
+      before do
+        visit login_path
+        fill_in 'メールアドレス', with: user.email
+        fill_in 'パスワード', with: 'password123'
+        click_button 'ログイン'
+        visit build_path(build)
+      end
+
+      it '詳細ページに遷移できる' do
+        expect(page).to have_current_path(build_path(build))
+      end
+
+      it '投稿タイトルが表示される' do
+        expect(page).to have_content(build.title)
+      end
+
+      it '投稿紹介が表示される' do
+        expect(page).to have_content(build.introduction)
+      end
+
+      it '投稿者名が表示される' do
+        expect(page).to have_content(build.user.name)
+      end
+
+      it '投稿日が表示される' do
+        expect(page).to have_content(build.created_at.strftime("%Y年%m月%d日"))
+      end
+
+      it 'シーズンが表示される' do
+        expect(page).to have_content(build.season)
+      end
+
+      it 'バトルレートが表示される' do
+        expect(page).to have_content(build.battle_rate)
+      end
+
+      it '順位が表示される' do
+        expect(page).to have_content(build.battle_rank)
+      end
+
+      it 'バトルタイプが表示される' do
+        expect(page).to have_content(build.battle_type)
+      end
+
+      it 'ブログURLが表示される' do
+        expect(page).to have_content(build.blog_url)
+      end
+    end
+
+    context 'ログインしていない場合' do
+      it '詳細ページにアクセスするとトップページにリダイレクトされる' do
+        visit build_path(build)
+        expect(page).to have_current_path(root_path)
+      end
+    end
+  end
 end
