@@ -1,7 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require 'json'
+
+# JSONファイルを読み込む
+pokemon_data = JSON.parse(File.read(Rails.root.join('db', 'pokemon_sv.json')))
+
+# データベースにポケモンデータを挿入
+pokemon_data.each do |pokemon|
+  Pokemon.create(japanese_name: pokemon['ja'], english_name: pokemon['en'])
+end
