@@ -1,9 +1,9 @@
 require 'json'
 
 # JSONファイルを読み込む
-pokemon_data = JSON.parse(File.read(Rails.root.join('db', 'pokemon_sv.json')))
+item_data = JSON.parse(File.read(Rails.root.join('db', 'item.json')))
 
 # データベースにポケモンデータを挿入
-pokemon_data.each do |pokemon|
-  Pokemon.create(japanese_name: pokemon['ja'], english_name: pokemon['en'])
+item_data.each do |item|
+  Item.create(japanese_name: item['ja'], english_name: item['en'])
 end

@@ -1,0 +1,637 @@
+[{
+    "ja": "あおぞらのプレート",
+    "en": "Sky-plate"
+  },
+  {
+    "ja": "あついいわ",
+    "en": "Heat-rock"
+  },
+  {
+    "ja": "あつぞこブーツ",
+    "en": "Heavy-duty-boots"
+  },
+  {
+    "ja": "いかずちプレート",
+    "en": "Zap-plate"
+  },
+  {
+    "ja": "いしずえのめん",
+    "en": "cornerstone-mask"
+  },
+  {
+    "ja": "いどのめん",
+    "en": "Wellspring-mask"
+  },
+  {
+    "ja": "いのちのたま",
+    "en": "Life-orb"
+  },
+  {
+    "ja": "エレキシード",
+    "en": "Electric-seed"
+  },
+  {
+    "ja": "おおきなねっこ",
+    "en": "Big-root"
+  },
+  {
+    "ja": "かいがらのすず",
+    "en": "Shell-bell"
+  },
+  {
+    "ja": "かえんだま",
+    "en": "Flame-orb"
+  },
+  {
+    "ja": "かたいいし",
+    "en": "Hard-stone"
+  },
+  {
+    "ja": "かまどのめん",
+    "en": "Hearthflame-mask"
+  },
+  {
+    "ja": "からぶりほけん",
+    "en": "Blunder-policy"
+  },
+  {
+    "ja": "かるいし",
+    "en": "Float-stone"
+  },
+  {
+    "ja": "がんせきプレート",
+    "en": "Stone-plate"
+  },
+  {
+    "ja": "きあいのタスキ",
+    "en": "focus-sash"
+  },
+  {
+    "ja": "きあいのハチマキ",
+    "en": "Focus-band"
+  },
+  {
+    "ja": "きせきのタネ",
+    "en": "Miracle-seed"
+  },
+  {
+    "ja": "きゅうこん",
+    "en": "Absorb-bulb"
+  },
+  {
+    "ja": "きれいなぬけがら",
+    "en": "Shed-shell"
+  },
+  {
+    "ja": "ぎんのこな",
+    "en": "Silver-powder"
+  },
+  {
+    "ja": "くちたけん",
+    "en": "Rusted-sword"
+  },
+  {
+    "ja": "くちたたて",
+    "en": "Rusted-shield"
+  },
+  {
+    "ja": "くっつきバリ",
+    "en": "Sticky-barb"
+  },
+  {
+    "ja": "グラスシード",
+    "en": "Grassy-seed"
+  },
+  {
+    "ja": "グランドコート",
+    "en": "Terrain-extender"
+  },
+  {
+    "ja": "くろいてっきゅう",
+    "en": "Iron-ball"
+  },
+  {
+    "ja": "くろいヘドロ",
+    "en": "Black-sludge"
+  },
+  {
+    "ja": "くろいメガネ",
+    "en": "Black-glasses"
+  },
+  {
+    "ja": "くろおび",
+    "en": "Black-belt"
+  },
+  {
+    "ja": "こうかくレンズ",
+    "en": "Wide-lens"
+  },
+  {
+    "ja": "こうこうのしっぽ",
+    "en": "Lagging-tail"
+  },
+  {
+    "ja": "こうてつプレート",
+    "en": "Iron-plate"
+  },
+  {
+    "ja": "こころのしずく",
+    "en": "Soul-dew"
+  },
+  {
+    "ja": "こだわりスカーフ",
+    "en": "Choice-scarf"
+  },
+  {
+    "ja": "こだわりハチマキ",
+    "en": "Choice-band"
+  },
+  {
+    "ja": "こだわりメガネ",
+    "en": "Choice-specs"
+  },
+  {
+    "ja": "ゴツゴツメット",
+    "en": "Rocky-helmet"
+  },
+  {
+    "ja": "こわもてプレート",
+    "en": "Dread-plate"
+  },
+  {
+    "ja": "こんごうだま",
+    "en": "Adamant-orb"
+  },
+  {
+    "ja": "サイコシード",
+    "en": "Psychic-seed"
+  },
+  {
+    "ja": "さらさらいわ",
+    "en": "Smooth-Rock"
+  },
+  {
+    "ja": "じしゃく",
+    "en": "Magnet"
+  },
+  {
+    "ja": "しずくプレート",
+    "en": "Splash-plate"
+  },
+  {
+    "ja": "しめつけバンド",
+    "en": "Binding-band"
+  },
+  {
+    "ja": "しめったいわ",
+    "en": "Damp-rock"
+  },
+  {
+    "ja": "じゃくてんほけん",
+    "en": "Weakness-policy"
+  },
+  {
+    "ja": "じゅうでんち",
+    "en": "Cell-battery"
+  },
+  {
+    "ja": "しらたま",
+    "en": "Lustrous-orb"
+  },
+  {
+    "ja": "シルクのスカーフ",
+    "en": "Silk-scarf"
+  },
+  {
+    "ja": "しろいハーブ",
+    "en": "White-herb"
+  },
+  {
+    "ja": "しんかのきせき",
+    "en": "Eviolite"
+  },
+  {
+    "ja": "しんぴのしずく",
+    "en": "Mystic-water"
+  },
+  {
+    "ja": "するどいくちばし",
+    "en": "Sharp-beak"
+  },
+  {
+    "ja": "せんせいのツメ",
+    "en": "Quick-claw"
+  },
+  {
+    "ja": "だいこんごうだま",
+    "en": "Adamant-crystal"
+  },
+  {
+    "ja": "だいしらたま",
+    "en": "Lustrous-globe"
+  },
+  {
+    "ja": "だいちのプレート",
+    "en": "Earth-plate"
+  },
+  {
+    "ja": "だっしゅつパック",
+    "en": "Eject-pack"
+  },
+  {
+    "ja": "だっしゅつボタン",
+    "en": "Eject-button"
+  },
+  {
+    "ja": "たつじんのおび",
+    "en": "Expert-belt"
+  },
+  {
+    "ja": "たべのこし",
+    "en": "Leftovers"
+  },
+  {
+    "ja": "たまむしプレート",
+    "en": "Insect-plate"
+  },
+  {
+    "ja": "ちからのハチマキ",
+    "en": "Muscle-band"
+  },
+  {
+    "ja": "つめたいいわ",
+    "en": "Icy-rock"
+  },
+  {
+    "ja": "つららのプレート",
+    "en": "Icicle-plate"
+  },
+  {
+    "ja": "でんきだま",
+    "en": "Light-ball"
+  },
+  {
+    "ja": "どくどくだま",
+    "en": "Toxic-orb"
+  },
+  {
+    "ja": "どくバリ",
+    "en": "Poison-barb"
+  },
+  {
+    "ja": "とけないこおり",
+    "en": "Never-Melt-ice"
+  },
+  {
+    "ja": "とつげきチョッキ",
+    "en": "Assault-vest"
+  },
+  {
+    "ja": "ねばりのかぎづめ",
+    "en": "Grip-claw"
+  },
+  {
+    "ja": "ねらいのまと",
+    "en": "Ring-target"
+  },
+  {
+    "ja": "ノーマルジュエル",
+    "en": "Normal-gem"
+  },
+  {
+    "ja": "のどスプレー",
+    "en": "Throat-spray"
+  },
+  {
+    "ja": "のろいのおふだ",
+    "en": "Spell-tag"
+  },
+  {
+    "ja": "はっきんだま",
+    "en": "Griseous-orb"
+  },
+  {
+    "ja": "パワフルハーブ",
+    "en": "Power-herb"
+  },
+  {
+    "ja": "ばんのうがさ",
+    "en": "Utility-umbrella"
+  },
+  {
+    "ja": "ひかりごけ",
+    "en": "Luminous-Moss"
+  },
+  {
+    "ja": "ひかりのこな",
+    "en": "Bright-powder"
+  },
+  {
+    "ja": "ひかりのねんど",
+    "en": "Light-clay"
+  },
+  {
+    "ja": "ひのたまプレート",
+    "en": "Flame-plate"
+  },
+  {
+    "ja": "ビビリだま",
+    "en": "Adrenaline-orb"
+  },
+  {
+    "ja": "ピントレンズ",
+    "en": "Scope-lens"
+  },
+  {
+    "ja": "ふうせん",
+    "en": "Air-balloon"
+  },
+  {
+    "ja": "フォーカスレンズ",
+    "en": "Zoom-lens"
+  },
+  {
+    "ja": "ふしぎのプレート",
+    "en": "Mind-plate"
+  },
+  {
+    "ja": "ぼうごパット",
+    "en": "Protective-pads"
+  },
+  {
+    "ja": "ぼうじんゴーグル",
+    "en": "Safety-goggles"
+  },
+  {
+    "ja": "まがったスプーン",
+    "en": "Twisted-spoon"
+  },
+  {
+    "ja": "ミストシード",
+    "en": "Misty-seed"
+  },
+  {
+    "ja": "みどりのプレート",
+    "en": "Meadow-plate"
+  },
+  {
+    "ja": "メトロノーム",
+    "en": "Metronome"
+  },
+  {
+    "ja": "メンタルハーブ",
+    "en": "Mental-herb"
+  },
+  {
+    "ja": "もうどくプレート",
+    "en": "Toxic-plate"
+  },
+  {
+    "ja": "もくたん",
+    "en": "Charcoal"
+  },
+  {
+    "ja": "ものしりメガネ",
+    "en": "Wise-glasses"
+  },
+  {
+    "ja": "もののけプレート",
+    "en": "Spooky-plate"
+  },
+  {
+    "ja": "やすらぎのすず",
+    "en": "Soothe-bell"
+  },
+  {
+    "ja": "やわらかいすな",
+    "en": "Soft-sand"
+  },
+  {
+    "ja": "ゆきだま",
+    "en": "Snowball"
+  },
+  {
+    "ja": "ようせいのハネ",
+    "en": "Fairy-feather"
+  },
+  {
+    "ja": "りゅうのキバ",
+    "en": "Dragon-fang"
+  },
+  {
+    "ja": "りゅうのプレート",
+    "en": "Draco-plate"
+  },
+  {
+    "ja": "ルームサービス",
+    "en": "Room-service"
+  },
+  {
+    "ja": "レッドカード",
+    "en": "Red-card"
+  },
+  {
+    "ja": "いかさまダイス",
+    "en": "Loaded-dice"
+  },
+  {
+    "ja": "おんみつマント",
+    "en": "Covert-cloak"
+  },
+  {
+    "ja": "クリアチャーム",
+    "en": "Clear-amulet"
+  },
+  {
+    "ja": "とくせいガード",
+    "en": "Ability-shield"
+  },
+  {
+    "ja": "パンチグローブ",
+    "en": "Punching-glove"
+  },
+  {
+    "ja": "ブーストエナジー",
+    "en": "Booster-energy"
+  },
+  {
+    "ja": "ものまねハーブ",
+    "en": "Mirror-herb"
+  },
+  {
+    "ja": "アッキのみ",
+    "en": "Kee-berry"
+  },
+  {
+    "ja": "イアのみ",
+    "en": "Iapapa-berry"
+  },
+  {
+    "ja": "イトケのみ",
+    "en": "Passho-berry"
+  },
+  {
+    "ja": "イバンのみ",
+    "en": "Custap-berry"
+  },
+  {
+    "ja": "ウイのみ",
+    "en": "Wiki-berry"
+  },
+  {
+    "ja": "ウタンのみ",
+    "en": "Payapa-berry"
+  },
+  {
+    "ja": "オッカのみ",
+    "en": "Occa-berry"
+  },
+  {
+    "ja": "オボンのみ",
+    "en": "Sitrus-berry"
+  },
+  {
+    "ja": "カゴのみ",
+    "en": "Chesto-berry"
+  },
+  {
+    "ja": "カシブのみ",
+    "en": "Kasib-berry"
+  },
+  {
+    "ja": "カムラのみ",
+    "en": "Salac-berry"
+  },
+  {
+    "ja": "キーのみ",
+    "en": "Persim-berry"
+  },
+  {
+    "ja": "クラボのみ",
+    "en": "Cheri-berry"
+  },
+  {
+    "ja": "サンのみ",
+    "en": "Lansat-berry"
+  },
+  {
+    "ja": "ジャポのみ",
+    "en": "Jaboca-berry"
+  },
+  {
+    "ja": "シュカのみ",
+    "en": "Shuca-berry"
+  },
+  {
+    "ja": "ズアのみ",
+    "en": "Rindo-berry"
+  },
+  {
+    "ja": "スターのみ",
+    "en": "Starf-berry"
+  },
+  {
+    "ja": "ソクノのみ",
+    "en": "Wacan-berry"
+  },
+  {
+    "ja": "タラプのみ",
+    "en": "Kee Berry"
+  },
+  {
+    "ja": "タンガのみ",
+    "en": "Tanga-berry"
+  },
+  {
+    "ja": "チーゴのみ",
+    "en": "Rawst-berry"
+  },
+  {
+    "ja": "チイラのみ",
+    "en": "Liechi-berry"
+  },
+  {
+    "ja": "ナゾのみ",
+    "en": "Enigma-berry"
+  },
+  {
+    "ja": "ナナシのみ",
+    "en": "Aspear-berry"
+  },
+  {
+    "ja": "ナモのみ",
+    "en": "Colbur-berry"
+  },
+  {
+    "ja": "バコウのみ",
+    "en": "Coba-berry"
+  },
+  {
+    "ja": "ハバンのみ",
+    "en": "Haban-berry"
+  },
+  {
+    "ja": "バンジのみ",
+    "en": "Aguav-berry"
+  },
+  {
+    "ja": "ビアーのみ",
+    "en": "Kebia-berry"
+  },
+  {
+    "ja": "フィラのみ",
+    "en": "Figy-berry"
+  },
+  {
+    "ja": "ホズのみ",
+    "en": "Chilan-berry"
+  },
+  {
+    "ja": "マゴのみ",
+    "en": "Mago-berry"
+  },
+  {
+    "ja": "ミクルのみ",
+    "en": "Micle-berry"
+  },
+  {
+    "ja": "モモンのみ",
+    "en": "Pecha-berry"
+  },
+  {
+    "ja": "ヤタピのみ",
+    "en": "Petaya-berry"
+  },
+  {
+    "ja": "ヤチェのみ",
+    "en": "Yache-berry"
+  },
+  {
+    "ja": "ヨプのみ",
+    "en": "Chople-berry"
+  },
+  {
+    "ja": "ヨロギのみ",
+    "en": "Charti-berry"
+  },
+  {
+    "ja": "リュガのみ",
+    "en": "Ganlon-berry"
+  },
+  {
+    "ja": "リリバのみ",
+    "en": "Babiri-berry"
+  },
+  {
+    "ja": "リンドのみ",
+    "en": "Rindo-berry"
+  },
+  {
+    "ja": "レンブのみ",
+    "en": "Rowap-berry"
+  },
+  {
+    "ja": "ロゼルのみ",
+    "en": "Roseli-berry"
+  }
+]
