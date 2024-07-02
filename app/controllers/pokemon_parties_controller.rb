@@ -1,0 +1,2 @@
+class PokemonPartiesController < ApplicationController
+end
