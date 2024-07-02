@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_01_150738) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_02_132254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_01_150738) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pokemon_parties", force: :cascade do |t|
+    t.bigint "build_id", null: false
+    t.bigint "pokemon_id", null: false
+    t.bigint "item_id", null: false
+    t.string "pokemon_image_url"
+    t.string "item_image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["build_id"], name: "index_pokemon_parties_on_build_id"
+    t.index ["item_id"], name: "index_pokemon_parties_on_item_id"
+    t.index ["pokemon_id"], name: "index_pokemon_parties_on_pokemon_id"
+  end
+
   create_table "pokemons", force: :cascade do |t|
     t.string "japanese_name"
     t.string "english_name"
@@ -87,4 +100,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_01_150738) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "builds", "users"
+  add_foreign_key "pokemon_parties", "builds"
+  add_foreign_key "pokemon_parties", "items"
+  add_foreign_key "pokemon_parties", "pokemons"
 end
