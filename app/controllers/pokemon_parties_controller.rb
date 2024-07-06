@@ -50,7 +50,7 @@ class PokemonPartiesController < ApplicationController
       item_data = JSON.parse(item_response.body)
       @pokemon_party.item_image_url = item_data['sprites']['default']
     else
-      flash.now[:alert] = "アイテムデータの取得に失敗しました。"
+      flash.now[:alert] = "アイテムの取得に失敗しました。"
       render :new and return
     end
 

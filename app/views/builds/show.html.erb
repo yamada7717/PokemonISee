@@ -6,6 +6,7 @@
     <% end %>
     <% if current_user == @build.user %>
       <%= link_to "構築記事を編集する", edit_build_path(@build), class: "rounded-lg bg-blue-500 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-blue-600" %>
+      <%= link_to "ポケモンパーティを登録する", new_build_pokemon_party_path(@build), class: "rounded-lg bg-blue-500 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-blue-600" %>
     <% end %>
   </div>
   <div class="flex flex-col md:flex-row md:space-x-8">
