@@ -9,5 +9,7 @@ Rails.application.routes.draw do
       get :mypage
     end
   end
-  resources :builds
+  resources :builds do
+    resources :pokemon_parties, only: %i[new create]
+  end
 end

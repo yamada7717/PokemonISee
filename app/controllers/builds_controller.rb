@@ -19,8 +19,7 @@ class BuildsController < ApplicationController
   def create
     @build = current_user.builds.new(build_params)
     if @build.save
-      # 後ほどポケモン登録機能を実装するため、一旦builds_pathにリダイレクト
-      redirect_to builds_path
+      redirect_to new_build_pokemon_party_path(build_id: @build.id)
     else
       render :new
     end
