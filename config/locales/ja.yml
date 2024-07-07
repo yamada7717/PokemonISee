@@ -49,3 +49,6 @@ ja:
               blank: "をどちらか選択してください"
             is_public:
               inclusion: "をどちらか選択してください"
+        pokemon_party:
+            base:
+              pokemon_limit: "ポケモンは6体までしか登録できません。"

@@ -42,6 +42,11 @@ class PokemonPartiesController < ApplicationController
   def create
     @pokemon_party = @build.pokemon_parties.new(pokemon_party_params)
 
+    if @pokemon_party.item_id.blank?
+      flash[:alert] = "アイテムを選択してください。"
+      redirect_to new_build_pokemon_party_path(build_id: @build.id) and return
+    end
+
     item = Item.find(@pokemon_party.item_id)
     item_english_name = item.english_name.downcase
 
@@ -51,14 +56,14 @@ class PokemonPartiesController < ApplicationController
       @pokemon_party.item_image_url = item_data['sprites']['default']
     else
       flash.now[:alert] = "アイテムの取得に失敗しました。"
-      render :new and return
+      render :new
     end
 
     if @pokemon_party.save
       redirect_to build_path(@build), notice: 'ポケモンが追加されました。'
     else
       flash[:alert] = @pokemon_party.errors.full_messages.to_sentence
-      render 'builds/show'
+      redirect_to new_build_pokemon_party_path(build_id: @build.id)
     end
   end
 
