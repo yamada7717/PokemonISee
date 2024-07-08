@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :pokemon do
-    japanese_name { "フシギダネ" }
-    english_name { "Bulbasaur" }
+    sequence(:japanese_name) { |n| "ポケモン#{n}" }
+    sequence(:english_name) { |n| "pokemon#{n}" }
   end
 end

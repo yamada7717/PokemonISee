@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    japanese_name { "いのちのたま" }
-    english_name { "Life-orb" }
+    sequence(:japanese_name) { |n| "アイテム#{n}" }
+    sequence(:english_name) { |n| "item#{n}" }
   end
 end

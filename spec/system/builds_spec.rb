@@ -31,19 +31,19 @@ RSpec.describe 'Builds', type: :system do
         fill_in 'バトルレート', with: valid_build.battle_rate
         fill_in 'ブログURL', with: valid_build.blog_url
         choose '公開する' if valid_build.is_public
-        click_button '登録する'
+        click_button 'ポケモンパーティ登録へ'
         build = Build.last
         expect(build.title).to eq(valid_build.title)
         expect(build.introduction).to eq(valid_build.introduction)
         expect(build.user).to eq(user)
-        expect(page).to have_current_path(builds_path)
+        expect(page).to have_current_path(new_build_pokemon_party_path(build_id: build.id))
       end
 
       it '無効な入力で構築記事投稿作成が失敗する' do
         visit new_build_path
         fill_in '構築タイトル', with: ''
         fill_in '構築紹介', with: ''
-        click_button '登録する'
+        click_button 'ポケモンパーティ登録へ'
         expect(page).to have_current_path(builds_path)
       end
     end
