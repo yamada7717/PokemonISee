@@ -1,6 +1,6 @@
 class PokemonPartiesController < ApplicationController
   before_action :require_login
-  before_action :set_build, only: [:new, :create]
+  before_action :set_build, only: %i[new edit create]
   def new
     return if params[:search].blank?
 
@@ -39,6 +39,10 @@ class PokemonPartiesController < ApplicationController
     @items = Item.all.map { |item| [item.japanese_name, item.id] }
   end
 
+  def edit
+    @pokemon_parties = @build.pokemon_parties
+  end
+
   def create
     @pokemon_party = @build.pokemon_parties.new(pokemon_party_params)
 
@@ -65,6 +69,9 @@ class PokemonPartiesController < ApplicationController
       flash[:alert] = @pokemon_party.errors.full_messages.to_sentence
       redirect_to new_build_pokemon_party_path(build_id: @build.id)
     end
+  end
+
+  def update
   end
 
   private

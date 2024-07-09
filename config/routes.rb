@@ -10,6 +10,6 @@ Rails.application.routes.draw do
     end
   end
   resources :builds do
-    resources :pokemon_parties, only: %i[new create]
+    resources :pokemon_parties, only: %i[new edit create]
   end
 end
