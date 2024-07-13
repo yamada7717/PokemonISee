@@ -1,28 +1,42 @@
-<div class="container flex-grow mx-auto px-4 py-6">
-  <div class="text-center mb-6">
-    <h1 class="text-3xl font-bold mb-2">ポケモン情報の編集</h1>
-    <p class="text-gray-600">ここでは、あなたのポケモンパーティの情報を編集できます。</p>
+<div class="container flex-grow mx-auto px-4 py-6 mt-24">
+  <div class="text-center mb-6 mt-2">
+    <h2 class="text-3xl font-bold mb-2">ポケモン情報の編集</h2>
+    <p class="text-gray-600">ここでは、あなたのポケモンパーティ情報を編集できます。</p>
+  </div>
+  <div class="text-left mt-10">
+    <%= link_to '前のページに戻る', 'javascript:history.back()', class: "text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded transition-colors duration-200" %>
   </div>
   <div class="bg-white shadow rounded-lg p-6">
-    <% if @build.pokemon_parties.present? %>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <% @build.pokemon_parties.each do |pokemon_party| %>
-          <div class="bg-white shadow rounded-lg p-4 flex flex-col items-center">
-            <%= display_image_if(pokemon_party.pokemon_image_url, size: "100") %>
-            <h3 class="text-lg font-semibold"><%= pokemon_party.pokemon.japanese_name %></h3>
-            <%= display_image_if(pokemon_party.item_image_url, size: "35") %>
-            <p class="text-sm text-gray-600 mb-4"><%= pokemon_party.item.japanese_name %></p>
-            <div class="flex space-x-2">
-
+    <div class="flex justify-center w-full">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mt-4">
+        <% if @build.pokemon_parties.present? %>
+          <% @build.pokemon_parties.each do |pokemon_party| %>
+            <div class="flex flex-col items-center">
+              <%= display_image_if(pokemon_party.pokemon_image_url, size: "80") %>
+              <p class="text-gray-900 title-font font-medium"><%= pokemon_party.pokemon.japanese_name %></p>
+              <% if pokemon_party.item_image_url %>
+                <div class="mt-2 flex flex-col items-center">
+                  <%= display_image_if(pokemon_party.item_image_url, size: "35") %>
+                </div>
+              <% else %>
+                <div class="mt-2 flex flex-col items-center">
+                  <!-- 画像が無い場合のスペース -->
+                  <div class="w-9 h-9 bg-transparent"></div>
+                </div>
+              <% end %>
+              <div class="mt-1">
+                <p class="text-gray-500 title-font font-medium text-sm"><%= pokemon_party.item.japanese_name %></p>
+              </div>
+              <%= link_to '削除', build_pokemon_party_path(@build, pokemon_party), method: :delete, data: { turbo_method: :delete }, class: "text-white bg-red-500 hover:bg-red-600 font-bold py-2 px-4 rounded transition-colors duration-200 mt-2" %>
             </div>
+          <% end %>
+        <% else %>
+          <div class="text-center">
+            <p class="text-gray-600 mb-4">登録されたポケモンはありません。</p>
+            <%= link_to 'ポケモンを追加する', new_build_pokemon_party_path(@build), class: "text-white bg-green-500 hover:bg-green-600 font-bold py-2 px-4 rounded transition-colors duration-200" %>
           </div>
         <% end %>
       </div>
-    <% else %>
-      <div class="text-center">
-        <p class="text-gray-600 mb-4">登録されたポケモンはありません。</p>
-        <%= link_to 'ポケモンを追加する', new_build_pokemon_party_path(@build), class: "text-white bg-green-500 hover:bg-green-600 font-bold py-2 px-4 rounded transition-colors duration-200" %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>

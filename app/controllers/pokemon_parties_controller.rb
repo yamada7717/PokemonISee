@@ -1,6 +1,6 @@
 class PokemonPartiesController < ApplicationController
   before_action :require_login
-  before_action :set_build, only: %i[new edit create]
+  before_action :set_build, only: %i[new edit create destroy]
   def new
     return if params[:search].blank?
 
@@ -71,7 +71,11 @@ class PokemonPartiesController < ApplicationController
     end
   end
 
-  def update
+  def destroy
+    @pokemon_party = @build.pokemon_parties.find(params[:id])
+    if @pokemon_party.destroy
+      redirect_to build_path(@build)
+    end
   end
 
   private

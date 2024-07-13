@@ -1,5 +1,5 @@
 <div class="container flex-grow mx-auto p-6 bg-white rounded-lg shadow-lg mt-24">
-  <div class="flex flex-wrap justify-center gap-4 mb-4">
+  <div class="flex flex-wrap justify-center gap-4 mb-4 mt-2">
     <%= link_to "構築記事一覧へ", builds_path, class: "rounded-lg bg-blue-500 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-blue-600" %>
     <% if current_user != @build.user %>
       <%= link_to "ユーザーページへ", user_path(@build.user), class: "rounded-lg bg-blue-500 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-blue-600" %>
@@ -7,7 +7,7 @@
     <% if current_user == @build.user %>
       <%= link_to "構築記事を編集する", edit_build_path(@build), class: "rounded-lg bg-blue-500 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-blue-600" %>
       <%= link_to "ポケモンパーティを登録する", new_build_pokemon_party_path(@build), class: "rounded-lg bg-blue-500 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-blue-600" %>
-      <%= link_to "ポケモンパーティを編集", edit_build_pokemon_party_path(@build, id: @build.id), class: "rounded-lg bg-indigo-500 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-600" %>
+      <%= link_to "ポケモンパーティを編集", edit_build_pokemon_party_path(@build, id: @build.id), class: "rounded-lg bg-blue-500 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-blue-600" %>
     <% end %>
   </div>
   <div class="flex flex-col md:flex-row md:space-x-8">
@@ -25,6 +25,31 @@
     </div>
     <div class="md:w-3/4 p-4">
       <h2 class="text-xl font-bold mb-4">ポケモン情報</h2>
+        <div class="flex justify-center w-full">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mt-4">
+            <% if @build.pokemon_parties.present? %>
+              <% @build.pokemon_parties.each do |pokemon_party| %>
+                <div class="flex flex-col items-center">
+                  <%= display_image_if(pokemon_party.pokemon_image_url, size: "80") %>
+                  <p class="text-gray-900 title-font font-medium"><%= pokemon_party.pokemon.japanese_name %></p>
+                  <% if pokemon_party.item_image_url %>
+                    <div class="mt-2 flex flex-col items-center">
+                      <%= display_image_if(pokemon_party.item_image_url, size: "35") %>
+                    </div>
+                  <% else %>
+                    <div class="mt-2 flex flex-col items-center">
+                      <!-- 画像が無い場合のスペース -->
+                      <div class="w-9 h-9 bg-transparent"></div>
+                    </div>
+                  <% end %>
+                  <div class="mt-1">
+                    <p class="text-gray-500 title-font font-medium text-sm"><%= pokemon_party.item.japanese_name %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       <h2 class="text-xl font-bold mt-4">構築紹介</h2>
       <div class="text-gray-700 text-sm space-y-2 mb-4">
         <p class="leading-relaxed"><%= display_or_default(@build.introduction) %></p>
