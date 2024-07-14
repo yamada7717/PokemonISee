@@ -1,12 +1,9 @@
-<div class="container flex-grow mx-auto px-4 py-6 mt-24">
+<div class="container flex-grow mx-auto p-6 bg-white rounded-lg mt-24">
   <div class="text-center mb-6 mt-2">
     <h2 class="text-3xl font-bold mb-2">ポケモン情報の編集</h2>
     <p class="text-gray-600">ここでは、あなたのポケモンパーティ情報を編集できます。</p>
   </div>
-  <div class="text-left mt-10">
-    <%= link_to '前のページに戻る', 'javascript:history.back()', class: "text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded transition-colors duration-200" %>
-  </div>
-  <div class="bg-white shadow rounded-lg p-6">
+  <div class="p-6">
     <div class="flex justify-center w-full">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mt-4">
         <% if @build.pokemon_parties.present? %>
@@ -38,5 +35,8 @@
         <% end %>
       </div>
     </div>
+    <div class="text-center mt-10">
+    <%= link_to '前のページに戻る', 'javascript:history.back()', class: "text-white bg-blue-500 hover:bg-blue-600 font-bold py-2 px-4 rounded transition-colors duration-200" %>
+  </div>
   </div>
 </div>
