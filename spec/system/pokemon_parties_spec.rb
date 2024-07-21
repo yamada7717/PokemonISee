@@ -11,7 +11,7 @@ RSpec.describe "PokemonParties", type: :system do
   let!(:pokemon6) { create(:pokemon, japanese_name: 'イーブイ', english_name: 'Eevee') }
   let!(:item) { create(:item, japanese_name: 'オボンのみ', english_name: 'Sitrus-berry') }
 
-  describe 'ポケモン検索機能' do
+  describe 'ポケモンパーティーに関するテスト' do
     context 'ログインしている場合' do
       before do
         visit login_path
@@ -33,7 +33,7 @@ RSpec.describe "PokemonParties", type: :system do
       end
 
       it '6体目までのポケモンが登録できる' do
-        [pokemon1, pokemon2, pokemon3, pokemon4, pokemon5].each do |pokemon|
+        [pokemon1, pokemon2, pokemon3, pokemon4, pokemon5, pokemon6].each do |pokemon|
           visit new_build_pokemon_party_path(build)
           fill_in 'search', with: pokemon.japanese_name
           click_button '検索'
@@ -60,6 +60,23 @@ RSpec.describe "PokemonParties", type: :system do
         select 'オボンのみ', from: 'pokemon_party[item_id]'
         click_button 'ポケモンを追加'
         expect(page).to have_content('ポケモンは6体までしか登録できません。')
+      end
+
+      it '登録したポケモンを消去できる' do
+        visit new_build_pokemon_party_path(build)
+        fill_in 'search', with: 'ピカチュウ'
+        click_button '検索'
+        select 'オボンのみ', from: 'pokemon_party[item_id]'
+        click_button 'ポケモンを追加'
+        expect(page).to have_content('ピカチュウ')
+        expect(page).to have_content('オボンのみ')
+
+        visit edit_build_pokemon_party_path(build, build.pokemon_parties.first)
+        page.accept_confirm '本当に消去しますか？' do
+          click_button '削除'
+        end
+        expect(page).to have_current_path(build_path(build))
+        expect(page).not_to have_content('ピカチュウ')
       end
     end
 
