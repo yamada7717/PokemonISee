@@ -15,8 +15,8 @@
                   <p class="text-gray-900 title-font font-medium">順位&nbsp;<%= build.battle_rank %></p>
                 </div>
                 <div class="flex items-center">
-                  <%= link_to user_path(build.user) do %>
-                    <img alt="team" class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-2" src="https://dummyimage.com/80x80">
+                  <% if build.user.profile_image.attached? %>
+                    <%= image_tag build.user.profile_image, alt: "User profile image", class: "w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-2" %>
                   <% end %>
                   <div>
                     <%= link_to build.user.name, user_path(build.user), class: "text-gray-900 title-font font-medium" %>
