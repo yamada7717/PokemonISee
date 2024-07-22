@@ -1,10 +1,10 @@
 <div class="container flex-grow px-5 py-24 mt-24 mx-auto bg-white">
   <div class="flex flex-wrap w-full flex-col items-center text-center">
-    <h2 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">シングルバトル</h2>
-    <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">シングルバトルの構築記事一覧です</p>
+    <h2 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">ダブルバトル</h2>
+    <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">ダブルバトルでの構築記事一覧です</p>
   </div>
   <div class="mt-10 mb-6 ml-2">
-    <%= link_to 'ダブルバトルの記事のページへ', double_battles_builds_path, class: 'border border-gray-400 bg-white rounded-md px-4 py-3 text-center text-xs sm:text-sm outline-none ring-indigo-500 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:px-8 md:py-3 md:text-base' %>
+    <%= link_to 'シングルバトルの記事のページへ', builds_path, class: 'border border-gray-400 bg-white rounded-md px-4 py-3 text-center text-xs sm:text-sm outline-none ring-indigo-500 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:px-8 md:py-3 md:text-base' %>
   </div>
   <div class="flex flex-wrap">
     <% @builds.each do |build| %>

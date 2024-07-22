@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     end
   end
   resources :builds do
+    collection do
+      get :double_battles
+    end
     resources :pokemon_parties, only: %i[new edit create destroy]
   end
 end

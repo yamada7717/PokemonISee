@@ -3,7 +3,11 @@ class BuildsController < ApplicationController
   before_action :set_build, only: %i[show edit update destroy]
 
   def index
-    @builds = Build.all
+    @builds = Build.where(is_public: true, battle_type: 'シングル')
+  end
+
+  def double_battles
+    @builds = Build.where(is_public: true, battle_type: 'ダブル')
   end
 
   def show
