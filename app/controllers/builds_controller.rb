@@ -3,11 +3,11 @@ class BuildsController < ApplicationController
   before_action :set_build, only: %i[show edit update destroy]
 
   def index
-    @builds = Build.where(is_public: true, battle_type: 'シングル')
+    @pagy, @builds = pagy(Build.where(is_public: true, battle_type: 'シングル').order(created_at: :desc), limit: 10)
   end
 
   def double_battles
-    @builds = Build.where(is_public: true, battle_type: 'ダブル')
+    @pagy, @builds = pagy(Build.where(is_public: true, battle_type: 'ダブル').order(created_at: :desc), limit: 10)
   end
 
   def show

@@ -1,0 +1,64 @@
+.pagy {
+  display: flex;
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: #0275d8;
+  margin: 15px 0;
+}
+
+.pagy> :not([hidden])~ :not([hidden]) {
+  --space-reverse: 0;
+  margin-right: calc(0.25rem * var(--space-reverse));
+  margin-left: calc(0.25rem * calc(1 - var(--space-reverse)));
+}
+
+.pagy a:not(.gap) {
+  display: block;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  background-color: #b3e5fc;
+  padding: 0.25rem 0.75rem;
+  color: #0275d8;
+}
+
+.pagy a:not(.gap):hover {
+  background-color: #81d4fa;
+}
+
+.pagy a:not(.gap):not([href]) {
+  cursor: default;
+  background-color: #e1f5fe;
+  color: #b3e5fc;
+}
+
+.pagy a:not(.gap).current {
+  background-color: #0275d8;
+  color: white;
+}
+
+.pagy label {
+  white-space: nowrap;
+  display: inline-block;
+  border-radius: 0.5rem;
+  background-color: #b3e5fc;
+  padding: 0.125rem 0.75rem;
+}
+
+.pagy label input {
+  line-height: 1.5rem;
+  border-radius: 0.375rem;
+  border-style: none;
+  background-color: #e1f5fe;
+}
+
+.pagy a:first-child::after {
+  content: '前';
+  margin-left: 0.5rem;
+}
+
+.pagy a:last-child::before {
+  content: '次';
+  margin-right: 0.5rem;
+}
