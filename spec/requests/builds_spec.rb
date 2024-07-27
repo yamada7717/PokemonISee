@@ -63,4 +63,24 @@ RSpec.describe "Builds", type: :request do
       end
     end
   end
+
+  describe 'ダブルバトルページ' do
+    context 'ログインしている場合' do
+      before do
+        post login_path, params: { email: user.email, password: 'password123' }
+      end
+
+      it 'ダブルバトルページに遷移できる' do
+        get double_battles_builds_path
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context 'ログインしていない場合' do
+      it 'TOPページにリダイレクトされる' do
+        get double_battles_builds_path
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
 end
