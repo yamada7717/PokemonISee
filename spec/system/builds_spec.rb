@@ -5,6 +5,7 @@ RSpec.describe 'Builds', type: :system do
   let(:user) { create(:user) }
   let(:valid_build) { create(:build, user: user) }
   let!(:build) { create(:build, user: user) }
+  let!(:double_battle_build) { create(:build, user: user, battle_type: 'ダブル') }
 
   describe '構築記事投稿の新規作成' do
     context 'ログインしている場合' do
@@ -188,6 +189,49 @@ RSpec.describe 'Builds', type: :system do
     context 'ログインしていない場合' do
       it '詳細ページにアクセスするとトップページにリダイレクトされる' do
         visit build_path(build)
+        expect(page).to have_current_path(root_path)
+      end
+    end
+  end
+
+  describe 'ダブルバトルページに関するテスト' do
+    context 'ログインしている場合' do
+      before do
+        visit login_path
+        fill_in 'メールアドレス', with: user.email
+        fill_in 'パスワード', with: 'password123'
+        click_button 'ログイン'
+        visit double_battles_builds_path
+      end
+
+      it 'ダブルバトルページに遷移できる' do
+        expect(page).to have_current_path(double_battles_builds_path)
+      end
+
+      it '投稿タイトルが表示される' do
+        expect(page).to have_content(double_battle_build.title)
+      end
+
+      it '投稿者名が表示される' do
+        expect(page).to have_content(double_battle_build.user.name)
+      end
+
+      it '投稿日が表示される' do
+        expect(page).to have_content(double_battle_build.created_at.strftime("%Y年%m月%d日"))
+      end
+
+      it 'シーズンが表示される' do
+        expect(page).to have_content(double_battle_build.season)
+      end
+
+      it '順位が表示される' do
+        expect(page).to have_content(double_battle_build.battle_rank)
+      end
+    end
+
+    context 'ログインしていない場合' do
+      it 'ダブルバトルページにアクセスできない' do
+        visit double_battles_builds_path
         expect(page).to have_current_path(root_path)
       end
     end
