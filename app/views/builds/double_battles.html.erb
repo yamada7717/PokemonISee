@@ -24,7 +24,7 @@
                 </div>
                 <div class="flex items-center">
                   <% if build.user.profile_image.attached? %>
-                    <%= image_tag build.user.profile_image, alt: "User profile image", class: "w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-2" %>
+                    <%= image_tag build.user.profile_image, alt: "プロフィール写真", class: "w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-2" %>
                   <% end %>
                   <div>
                     <%= link_to build.user.name, user_path(build.user), class: "text-gray-900 title-font font-medium" %>
