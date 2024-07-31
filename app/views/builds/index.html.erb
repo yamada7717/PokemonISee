@@ -3,6 +3,7 @@
     <h2 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">シングルバトル</h2>
     <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">シングルバトルの構築記事一覧です</p>
   </div>
+  <%= render "shared/search"%>
   <div class="flex flex-col md:flex-row items-center justify-between mt-10 mb-6 w-full">
     <div class="mb-4 md:mb-0">
       <%= link_to 'ダブルバトルの記事のページへ', double_battles_builds_path, class: 'border border-gray-400 bg-white rounded-md px-4 py-3 text-center text-xs sm:text-sm outline-none ring-indigo-500 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:px-8 md:py-3 md:text-base' %>

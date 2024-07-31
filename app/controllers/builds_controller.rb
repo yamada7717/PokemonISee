@@ -4,10 +4,42 @@ class BuildsController < ApplicationController
 
   def index
     @pagy, @builds = pagy(Build.where(is_public: true, battle_type: 'シングル').order(created_at: :desc), limit: 10)
+
+    if params[:user_name].present?
+      @builds = @builds.joins(:user).where('users.name LIKE ?', "%#{params[:user_name]}%")
+    end
+    if params[:pokemon_name].present?
+      @builds = @builds.joins(pokemon_parties: :pokemon).where('pokemons.japanese_name LIKE ?', "%#{params[:pokemon_name]}%")
+    end
+    if params[:battle_rank].present?
+      @builds = @builds.where(battle_rank: params[:battle_rank])
+    end
+    if params[:item_name].present?
+      @builds = @builds.joins(pokemon_parties: :item).where('items.japanese_name LIKE ?', "%#{params[:item_name]}%")
+    end
+    if params[:season].present?
+      @builds = @builds.where(season: params[:season])
+    end
   end
 
   def double_battles
     @pagy, @builds = pagy(Build.where(is_public: true, battle_type: 'ダブル').order(created_at: :desc), limit: 10)
+
+    if params[:user_name].present?
+      @builds = @builds.joins(:user).where('users.name LIKE ?', "%#{params[:user_name]}%")
+    end
+    if params[:pokemon_name].present?
+      @builds = @builds.joins(pokemon_parties: :pokemon).where('pokemons.japanese_name LIKE ?', "%#{params[:pokemon_name]}%")
+    end
+    if params[:battle_rank].present?
+      @builds = @builds.where(battle_rank: params[:battle_rank])
+    end
+    if params[:item_name].present?
+      @builds = @builds.joins(pokemon_parties: :item).where('items.japanese_name LIKE ?', "%#{params[:item_name]}%")
+    end
+    if params[:season].present?
+      @builds = @builds.where(season: params[:season])
+    end
   end
 
   def show
