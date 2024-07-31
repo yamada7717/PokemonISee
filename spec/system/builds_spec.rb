@@ -6,6 +6,10 @@ RSpec.describe 'Builds', type: :system do
   let(:valid_build) { create(:build, user: user) }
   let!(:build) { create(:build, user: user) }
   let!(:double_battle_build) { create(:build, user: user, battle_type: 'ダブル') }
+  let!(:pokemon1) { create(:pokemon, japanese_name: 'ピカチュウ', english_name: 'Pikachu') }
+  let!(:item) { create(:item, japanese_name: 'オボンのみ', english_name: 'Sitrus-berry') }
+  let!(:single_battle_build) { create(:build, user: user, battle_type: 'シングル') }
+  let!(:pokemon_party) { create(:pokemon_party, build: single_battle_build, pokemon: pokemon1, item: item) }
 
   describe '構築記事投稿の新規作成' do
     context 'ログインしている場合' do
@@ -89,6 +93,51 @@ RSpec.describe 'Builds', type: :system do
 
       it '順位が表示される' do
         expect(page).to have_content(build.battle_rank)
+      end
+    end
+
+    context '検索機能' do
+      before do
+        visit login_path
+        fill_in 'メールアドレス', with: user.email
+        fill_in 'パスワード', with: 'password123'
+        click_button 'ログイン'
+        visit builds_path
+      end
+
+      it 'ユーザー名で検索できる' do
+        fill_in 'user_name', with: user.name
+        click_button '検索'
+        expect(page).to have_content(user.name)
+        expect(page).to have_content('シングルバトル')
+      end
+
+      it 'ポケモン名で検索できる' do
+        fill_in 'pokemon_name', with: 'ピカチュウ'
+        click_button '検索'
+        expect(page).to have_content('ピカチュウ')
+        expect(page).to have_content('シングルバトル')
+      end
+
+      it '順位で検索できる' do
+        fill_in 'battle_rank', with: build.battle_rank
+        click_button '検索'
+        expect(page).to have_content(build.battle_rank)
+        expect(page).to have_content('シングルバトル')
+      end
+
+      it '持ち物で検索できる' do
+        fill_in 'item_name', with: 'オボンのみ'
+        click_button '検索'
+        expect(page).to have_content('オボンのみ')
+        expect(page).to have_content('シングルバトル')
+      end
+
+      it 'シーズンで検索できる' do
+        fill_in 'season', with: build.season
+        click_button '検索'
+        expect(page).to have_content("シーズン #{build.season}")
+        expect(page).to have_content('シングルバトル')
       end
     end
 
@@ -226,6 +275,51 @@ RSpec.describe 'Builds', type: :system do
 
       it '順位が表示される' do
         expect(page).to have_content(double_battle_build.battle_rank)
+      end
+    end
+
+    context '検索機能' do
+      before do
+        visit login_path
+        fill_in 'メールアドレス', with: user.email
+        fill_in 'パスワード', with: 'password123'
+        click_button 'ログイン'
+        visit double_battles_builds_path
+      end
+
+      it 'ユーザー名で検索できる' do
+        fill_in 'user_name', with: user.name
+        click_button '検索'
+        expect(page).to have_content(user.name)
+        expect(page).to have_content('ダブルバトル')
+      end
+
+      it 'ポケモン名で検索できる' do
+        fill_in 'pokemon_name', with: 'ピカチュウ'
+        click_button '検索'
+        expect(page).to have_content('ピカチュウ')
+        expect(page).to have_content('ダブルバトル')
+      end
+
+      it '順位で検索できる' do
+        fill_in 'battle_rank', with: build.battle_rank
+        click_button '検索'
+        expect(page).to have_content(build.battle_rank)
+        expect(page).to have_content('ダブルバトル')
+      end
+
+      it '持ち物で検索できる' do
+        fill_in 'item_name', with: 'オボンのみ'
+        click_button '検索'
+        expect(page).to have_content('オボンのみ')
+        expect(page).to have_content('ダブルバトル')
+      end
+
+      it 'シーズンで検索できる' do
+        fill_in 'season', with: build.season
+        click_button '検索'
+        expect(page).to have_content("シーズン #{build.season}")
+        expect(page).to have_content('ダブルバトル')
       end
     end
 
