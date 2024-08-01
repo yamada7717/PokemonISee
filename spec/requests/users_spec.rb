@@ -15,9 +15,14 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "ユーザーページ" do
-    it "ユーザー詳細ページが正常に表示されること" do
-      get user_path(user)
-      expect(response).to have_http_status(:success)
+    context "ログインしている場合" do
+      before do
+        post login_path, params: { email: user.email, password: 'password123' }
+      end
+      it "ユーザー詳細ページが正常に表示されること" do
+        get user_path(user)
+        expect(response).to have_http_status(:success)
+      end
     end
   end
 

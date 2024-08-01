@@ -108,4 +108,94 @@ RSpec.describe 'User', type: :system do
       end
     end
   end
+
+  describe 'プライベート構築記事一覧ページ' do
+    let(:user) { create(:user) }
+    let!(:private_build) { create(:build, user: user, is_public: false) }
+
+    context 'ログインしている場合' do
+      before do
+        visit login_path
+        fill_in "メールアドレス", with: user.email
+        fill_in "パスワード", with: "password123"
+        click_button "ログイン"
+        visit private_builds_user_path(user)
+      end
+
+      it 'プライベート構築記事一覧ページに遷移できる' do
+        expect(current_path).to eq(private_builds_user_path(user))
+      end
+
+      it 'プライベート構築記事が表示される' do
+        expect(page).to have_content(private_build.title)
+      end
+    end
+
+    context 'ログインしていない場合' do
+      it 'TOPページにリダイレクトされる' do
+        visit private_builds_user_path(user)
+        expect(current_path).to eq(root_path)
+      end
+    end
+  end
+
+  describe '公開ダブルバトル構築記事一覧ページ' do
+    let(:user) { create(:user) }
+    let!(:public_double_build) { create(:build, user: user, is_public: true, battle_type: 'ダブル') }
+
+    context 'ログインしている場合' do
+      before do
+        visit login_path
+        fill_in "メールアドレス", with: user.email
+        fill_in "パスワード", with: "password123"
+        click_button "ログイン"
+        visit public_double_builds_user_path(user)
+      end
+
+      it '公開ダブルバトル構築記事一覧ページに遷移できる' do
+        expect(current_path).to eq(public_double_builds_user_path(user))
+      end
+
+      it '公開ダブルバトル構築記事が表示される' do
+        expect(page).to have_content(public_double_build.title)
+      end
+    end
+
+    context 'ログインしていない場合' do
+      it 'TOPページにリダイレクトされる' do
+        visit public_double_builds_user_path(user)
+        expect(current_path).to eq(root_path)
+      end
+    end
+  end
+
+  describe 'プライベートダブルバトル構築記事一覧ページ' do
+    let(:user) { create(:user) }
+    let!(:private_double_build) { create(:build, user: user, is_public: false, battle_type: 'ダブル') }
+
+    context 'ログインしている場合' do
+      before do
+        visit login_path
+        fill_in "メールアドレス", with: user.email
+        fill_in "パスワード", with: "password123"
+        click_button "ログイン"
+        visit private_double_builds_user_path(user)
+      end
+
+      it 'プライベートダブルバトル構築記事一覧ページに遷移できる' do
+        expect(current_path).to eq(private_double_builds_user_path(user))
+      end
+
+      it 'プライベートダブルバトル構築記事が表示される' do
+        expect(page).to have_content(private_double_build.title)
+      end
+    end
+
+    context 'ログインしていない場合' do
+      it 'TOPページにリダイレクトされる' do
+        visit private_double_builds_user_path(user)
+        expect(current_path).to eq(root_path)
+      end
+    end
+  end
 end
