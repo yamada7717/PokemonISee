@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: %i[edit update mypage]
-  before_action :set_current_user, only: %i[edit update mypage]
+  before_action :require_login, only: %i[edit update mypage private_builds public_double_builds private_double_builds]
+  before_action :set_current_user, only: %i[edit update mypage private_builds public_double_builds private_double_builds]
 
   def show
     @user = User.find(params[:id])
@@ -42,6 +42,19 @@ class UsersController < ApplicationController
   end
 
   def mypage
+    @pagy, @builds = pagy(Build.where(is_public: true, battle_type: 'シングル').order(created_at: :desc), limit: 10)
+  end
+
+  def private_builds
+    @pagy, @builds = pagy(Build.where(is_public: false, battle_type: 'シングル').order(created_at: :desc), limit: 10)
+  end
+
+  def public_double_builds
+    @pagy, @builds = pagy(Build.where(is_public: true, battle_type: 'ダブル').order(created_at: :desc), limit: 10)
+  end
+
+  def private_double_builds
+    @pagy, @builds = pagy(Build.where(is_public: false, battle_type: 'ダブル').order(created_at: :desc), limit: 10)
   end
 
   private
