@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_login, only: %i[show edit update mypage private_builds public_double_builds private_double_builds]
   before_action :set_user, only: %i[show edit update mypage private_builds public_double_builds private_double_builds]
+  before_action :correct_user, only: %i[edit update mypage public_double_builds private_builds private_double_builds]
 
   def show
   end
@@ -41,11 +42,11 @@ class UsersController < ApplicationController
   end
 
   def mypage
-    @pagy, @builds = pagy(@user.builds.where(is_public: true, battle_type: 'シングル').order(created_at: :desc), limit: 10)
+    @pagy, @builds = pagy(@user.builds.order(created_at: :desc), limit: 10)
   end
 
   def private_builds
-    @pagy, @builds = pagy(current_user.builds.where(is_public: false, battle_type: 'シングル').order(created_at: :desc), limit: 10)
+    @pagy, @builds = pagy(@user.builds.where(is_public: false, battle_type: 'シングル').order(created_at: :desc), limit: 10)
   end
 
   def public_double_builds
@@ -53,13 +54,19 @@ class UsersController < ApplicationController
   end
 
   def private_double_builds
-    @pagy, @builds = pagy(current_user.builds.where(is_public: false, battle_type: 'ダブル').order(created_at: :desc), limit: 10)
+    @pagy, @builds = pagy(@user.builds.where(is_public: false, battle_type: 'ダブル').order(created_at: :desc), limit: 10)
   end
 
   private
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def correct_user
+    unless @user == current_user
+      redirect_to root_path, alert: "不正なアクセスです。"
+    end
   end
 
   def user_params
