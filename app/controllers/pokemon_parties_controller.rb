@@ -1,6 +1,7 @@
 class PokemonPartiesController < ApplicationController
   before_action :require_login
   before_action :set_build, only: %i[new edit create destroy]
+  before_action :correct_build_user
   def new
     return if params[:search].blank?
 
@@ -82,6 +83,12 @@ class PokemonPartiesController < ApplicationController
 
   def set_build
     @build = Build.find(params[:build_id])
+  end
+
+  def correct_build_user
+    unless @build.user == current_user
+      redirect_to root_path, alert: "不正なアクセスです。"
+    end
   end
 
   def pokemon_party_params
