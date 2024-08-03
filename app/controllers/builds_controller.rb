@@ -1,7 +1,7 @@
 class BuildsController < ApplicationController
   before_action :require_login
-  before_action :set_build, only: %i[show edit update destroy]
-
+  before_action :set_build, only: %i[show edit update]
+  before_action :correct_build_user, only: %i[edit update]
   def index
     @pagy, @builds = pagy(Build.where(is_public: true, battle_type: 'シングル').order(created_at: :desc), limit: 10)
 
@@ -73,6 +73,12 @@ class BuildsController < ApplicationController
 
   def set_build
     @build = Build.find(params[:id])
+  end
+
+  def correct_build_user
+    unless @build.user == current_user
+      redirect_to root_path, alert: "不正なアクセスです。"
+    end
   end
 
   def build_params
