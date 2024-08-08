@@ -2,6 +2,8 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   has_one_attached :profile_image
   has_many :builds, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_builds, through: :likes, source: :build
 
   attr_accessor :remove_profile_image
 
