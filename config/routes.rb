@@ -17,5 +17,6 @@ Rails.application.routes.draw do
       get :double_battles
     end
     resources :pokemon_parties, only: %i[new edit create destroy]
+    resource :like, only: [:create, :destroy]
   end
 end
