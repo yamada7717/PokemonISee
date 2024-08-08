@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get :public_double_builds
       get :private_double_builds
       get :single_battle_likes
+      get :double_battle_likes
     end
   end
   resources :builds do
