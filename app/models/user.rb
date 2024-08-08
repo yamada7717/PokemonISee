@@ -15,6 +15,10 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 255 }, allow_blank: true
   validate :validate_profile_image, if: -> { profile_image.attached? }
 
+  def liked?(build)
+    liked_builds.include?(build)
+  end
+
   private
 
   def validate_profile_image
