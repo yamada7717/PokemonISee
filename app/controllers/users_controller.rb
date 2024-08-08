@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: %i[show edit update mypage private_builds public_double_builds private_double_builds]
-  before_action :set_user, only: %i[show edit update mypage private_builds public_double_builds private_double_builds]
+  before_action :require_login, only: %i[show edit update mypage private_builds public_double_builds private_double_builds single_battle_likes]
+  before_action :set_user, only: %i[show edit update mypage private_builds public_double_builds private_double_builds single_battle_likes]
   before_action :correct_user, only: %i[edit update mypage private_builds private_double_builds]
 
   def show
@@ -56,6 +56,10 @@ class UsersController < ApplicationController
 
   def private_double_builds
     @pagy, @builds = pagy(@user.builds.where(is_public: false, battle_type: 'ダブル').order(created_at: :desc), limit: 10)
+  end
+
+  def single_battle_likes
+    @pagy, @builds = pagy(@user.liked_builds.where(is_public: true, battle_type: 'シングル').order(created_at: :desc), limit: 10)
   end
 
   private
