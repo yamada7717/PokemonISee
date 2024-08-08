@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_02_132254) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_08_154605) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_02_132254) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "build_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["build_id"], name: "index_likes_on_build_id"
+    t.index ["user_id", "build_id"], name: "index_likes_on_user_id_and_build_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "pokemon_parties", force: :cascade do |t|
     t.bigint "build_id", null: false
     t.bigint "pokemon_id", null: false
@@ -100,6 +110,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_02_132254) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "builds", "users"
+  add_foreign_key "likes", "builds"
+  add_foreign_key "likes", "users"
   add_foreign_key "pokemon_parties", "builds"
   add_foreign_key "pokemon_parties", "items"
   add_foreign_key "pokemon_parties", "pokemons"
