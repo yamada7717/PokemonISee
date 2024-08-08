@@ -109,6 +109,51 @@ RSpec.describe 'User', type: :system do
     end
   end
 
+  describe 'ユーザー詳細ページ' do
+    let(:user) { create(:user) }
+    let!(:single_build) { create(:build, user: user, battle_type: 'シングル', is_public: true) }
+    let!(:double_build) { create(:build, user: user, battle_type: 'ダブル', is_public: true) }
+
+    context 'ログインしている場合' do
+      before do
+        visit login_path
+        fill_in 'メールアドレス', with: user.email
+        fill_in 'パスワード', with: 'password123'
+        click_button 'ログイン'
+        visit user_path(user)
+      end
+
+      it 'ユーザー詳細ページに遷移できる' do
+        expect(current_path).to eq(user_path(user))
+      end
+
+      it 'ユーザー名が表示される' do
+        expect(page).to have_content(user.name)
+      end
+
+      it 'シングルバトル公開構築記事が表示されているか' do
+        expect(page).to have_content(single_build.title)
+      end
+
+      it 'ダブルバトル公開記事に遷移できる' do
+        visit double_battles_builds_path
+        expect(current_path).to eq(double_battles_builds_path)
+      end
+
+      it 'ダブルバトル公開記事が表示されているか' do
+        visit double_battles_builds_path
+        expect(page).to have_content(double_build.title)
+      end
+    end
+
+    context 'ログインしていない場合' do
+      it 'ユーザー詳細ページにアクセスできない' do
+        visit user_path(user)
+        expect(current_path).to eq(root_path)
+      end
+    end
+  end
+
   describe 'プライベート構築記事一覧ページ' do
     let(:user) { create(:user) }
     let!(:private_build) { create(:build, user: user, is_public: false) }
