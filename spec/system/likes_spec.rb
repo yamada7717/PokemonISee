@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Likes', type: :system do
   let!(:build_owner) { create(:user, name: "Build Owner", email: "owner@example.com") }
   let!(:liking_user) { create(:user, name: "Liking User", email: "liker@example.com") }
-
   let!(:single_battle_build) { create(:build, :single_battle, user: build_owner) }
   let!(:double_battle_build) { create(:build, :double_battle, user: build_owner) }
 
