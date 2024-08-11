@@ -3,8 +3,35 @@ require 'rails_helper'
 RSpec.describe 'Likes', type: :system do
   let!(:build_owner) { create(:user, name: "Build Owner", email: "owner@example.com") }
   let!(:liking_user) { create(:user, name: "Liking User", email: "liker@example.com") }
-  let!(:single_battle_build) { create(:build, :single_battle, user: build_owner) }
-  let!(:double_battle_build) { create(:build, :double_battle, user: build_owner) }
+  let!(:single_battle_build) do
+    Build.create!(
+      title: 'シングルバトルタイトル',
+      introduction: 'シングルバトルの内容です。',
+      game_type: 'SV',
+      season: 1,
+      battle_type: 'シングル',
+      battle_rank: 100,
+      battle_rate: 1500,
+      blog_url: 'http://example.com',
+      is_public: true,
+      user: build_owner
+    )
+  end
+
+  let!(:double_battle_build) do
+    Build.create!(
+      title: 'ダブルバトルタイトル',
+      introduction: 'ダブルバトルの内容です。',
+      game_type: 'SV',
+      season: 1,
+      battle_type: 'ダブル',
+      battle_rank: 100,
+      battle_rate: 1500,
+      blog_url: 'http://example.com',
+      is_public: true,
+      user: build_owner
+    )
+  end
 
   context 'ログインしている場合' do
     before do
