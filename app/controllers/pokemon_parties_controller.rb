@@ -48,7 +48,7 @@ class PokemonPartiesController < ApplicationController
     @pokemon_party = @build.pokemon_parties.new(pokemon_party_params)
 
     if @pokemon_party.item_id.blank?
-      flash[:alert] = "アイテムを選択してください。"
+      flash.now[:alert] = "アイテムを選択してください。"
       redirect_to new_build_pokemon_party_path(build_id: @build.id) and return
     end
 

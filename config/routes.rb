@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'follows/create'
+  get 'follows/destroy'
   root 'tops#index'
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
@@ -21,4 +23,5 @@ Rails.application.routes.draw do
     resources :pokemon_parties, only: %i[new edit create destroy]
     resource :like, only: [:create, :destroy]
   end
+  resources :follows, only: [:create, :destroy]
 end
