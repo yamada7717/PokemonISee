@@ -127,3 +127,7 @@ Style/HashSyntax:
 # Presence?の使用を許容する
 Rails/Presence:
   Enabled: false
+
+#:inverseofを使用しない
+Rails/InverseOf:
+  Enabled: false
