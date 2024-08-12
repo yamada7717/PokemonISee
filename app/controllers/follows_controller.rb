@@ -1,21 +1,13 @@
 class FollowsController < ApplicationController
-  before_action :set_user
-
   def create
-    current_user.followings << @user
-    flash[:notice] = "フォローしました"
-    redirect_to @user
+    user_to_follow = User.find(params[:followed_id])
+    current_user.followings << user_to_follow
+    redirect_to user_path(user_to_follow), notice: 'フォローしました'
   end
 
   def destroy
-    current_user.followings.delete(@user)
-    flash[:notice] = "フォローを解除しました"
-    redirect_to @user
-  end
-
-  private
-
-  def set_user
-    @user = User.find(params[:followed_id])
+    follow = Follow.find(params[:id])
+    follow.destroy
+    redirect_to user_path(follow.followed), notice: 'フォローをはずしました'
   end
 end
