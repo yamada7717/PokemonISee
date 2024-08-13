@@ -29,11 +29,12 @@
       </div>
     </div>
     <div class="flex space-x-4 text-sm mt-2 ml-4 mb-2">
-      <% if current_user.followings.include?(@user) %>
-        <% follow = current_user.following_follows.find_by(followed_id: @user.id) %>
-        <%= button_to 'フォローをはずす', follow_path(follow), method: :delete, class: "mt-2 rounded-lg bg-red-500 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-red-600"  %>
+      <% if current_user != @user %>
+        <% if current_user.following?(@user) %>
+          <%= button_to 'フォローを外す', user_follow_path(@user), method: :delete, class: "ml-auto px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition duration-200" %>
         <% else %>
-        <%= button_to 'フォローする', follows_path(followed_id: @user.id), method: :post, class: "mt-2 rounded-lg bg-blue-500 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-blue-600" %>
+          <%= button_to 'フォローする', user_follow_path(@user), method: :post, class: "ml-auto px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200" %>
+        <% end %>
       <% end %>
     </div>
   </div>

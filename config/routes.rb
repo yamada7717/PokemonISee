@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get :following
       get :followers
     end
+    resource :follow, only: %i[create destroy]
   end
   resources :builds do
     collection do
@@ -25,5 +26,4 @@ Rails.application.routes.draw do
     resources :pokemon_parties, only: %i[new edit create destroy]
     resource :like, only: [:create, :destroy]
   end
-  resources :follows, only: [:create, :destroy]
 end

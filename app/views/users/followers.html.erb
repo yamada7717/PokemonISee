@@ -52,9 +52,9 @@
                         <span class="group-hover:text-blue-500 transition duration-200"><%= follower.name %></span>
                       <% end %>
                       <% if current_user.following?(follower) %>
-                        <%= button_to 'フォローを外す', follow_path(follower), method: :delete, class: "ml-auto px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition duration-200" %>
+                        <%= button_to 'フォローを外す', user_follow_path(follower), method: :delete, class: "ml-auto px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition duration-200" %>
                       <% else %>
-                        <%= button_to 'フォローする', follows_path(followed_id: follower.id), method: :post, class: "ml-auto px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200" %>
+                        <%= button_to 'フォローする', user_follow_path(follower), method: :post, class: "ml-auto px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200" %>
                       <% end %>
                     </div>
                   </td>
@@ -64,6 +64,9 @@
           </table>
         </div>
       </div>
+    </div>
+    <div class="mt-4 mb-4 flex justify-center">
+      <%== pagy_nav(@pagy) %>
     </div>
   </div>
 </div>

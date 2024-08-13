@@ -1,13 +1,13 @@
 class FollowsController < ApplicationController
   def create
-    user_to_follow = User.find(params[:followed_id])
-    current_user.followings << user_to_follow
-    redirect_to request.referer, status: :see_other
+    following = current_user.follows.build(followed_id: params[:user_id])
+    following.save
+    redirect_to request.referer
   end
 
   def destroy
-    follow = Follow.find(params[:id])
-    follow.destroy
-    redirect_to request.referer, status: :see_other
+    following = current_user.follows.find_by(followed_id: params[:user_id])
+    following.destroy
+    redirect_to request.referer
   end
 end

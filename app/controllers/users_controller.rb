@@ -67,12 +67,12 @@ class UsersController < ApplicationController
   end
 
   def followers
-    @followers = @user.followers
+    @pagy, @followers = pagy(@user.followers.order(created_at: :desc), items: 30)
     @followers_count = @followers.count
   end
 
   def followings
-    @followings = @user.followings
+    @pagy, @followings = pagy(@user.followings.order(created_at: :desc), items: 30)
     @followings_count = @followings.count
   end
 

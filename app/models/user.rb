@@ -4,10 +4,10 @@ class User < ApplicationRecord
   has_many :builds, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_builds, through: :likes, source: :build
-  has_many :follower_follows, foreign_key: :followed_id, class_name: "Follow", dependent: :destroy
-  has_many :followers, through: :follower_follows, source: :follower
-  has_many :following_follows, foreign_key: :follower_id, class_name: "Follow", dependent: :destroy
-  has_many :followings, through: :following_follows, source: :followed
+  has_many :follows, foreign_key: :follower_id, class_name: "Follow", dependent: :destroy
+  has_many :followings, through: :follows, source: :followed
+  has_many :reverse_follows, foreign_key: :followed_id, class_name: "Follow", dependent: :destroy
+  has_many :followers, through: :reverse_follows, source: :follower
 
   attr_accessor :remove_profile_image
 
@@ -23,8 +23,8 @@ class User < ApplicationRecord
     liked_builds.include?(build)
   end
 
-  def following?(other_user)
-    followings.include?(other_user)
+  def following?(user)
+    followings.include?(user)
   end
 
   private
