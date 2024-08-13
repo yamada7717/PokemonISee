@@ -15,8 +15,18 @@
       <p class="text-sm text-gray-600 leading-relaxed break-words"><%= @user.introduction %></p>
     </div>
     <div class="flex space-x-4 text-sm mt-2 ml-4 mb-2">
-      <%= link_to "#{@user.followings.count} フォロー中", following_user_path(@user) %>
-      <%= link_to "#{@user.followers.count} フォロワー", followers_user_path(@user) %>
+      <div class="text-center">
+        <%= link_to following_user_path(@user), class: "text-gray-700 hover:text-gray-900 block" do %>
+          <span>フォロー中</span>
+          <div class="text-sm font-normal"><%= @user.followings.count %></div>
+        <% end %>
+      </div>
+      <div class="text-center">
+        <%= link_to followers_user_path(@user), class: "text-gray-700 hover:text-gray-900 block" do %>
+          <span>フォロワー</span>
+          <div class="text-sm font-normal"><%= @user.followers.count %></div>
+        <% end %>
+      </div>
     </div>
     <div class="mt-4 ml-4">
       <%= link_to "プロフィールを編集", edit_user_path(current_user), class: "px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 text-sm" %>

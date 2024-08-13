@@ -1,16 +1,69 @@
-<div class="container flex-grow mx-auto p-6 flex flex-col md:flex-row mt-24">
-  <div class="flex flex-col items-center mb-6 md:mb-0 md:mr-6 mr-2 bg-white p-4 shadow rounded-lg h-[250px]">
-    <h2 class="text-xl font-bold mb-1"> <%= @user.name %> </h2>
-    <p class="text-sm text-gray-600 mb-2"><%= @user.introduction %></p>
-    <p class="text-sm text-gray-600 mb-2"><%= @user.email %></p>
-    <div class="flex space-x-4 text-sm mb-2">
+<div class="container flex-grow mx-auto p-6 md:flex mt-[124px]">
+  <div class="flex flex-col items-start mb-6 md:mb-0 md:mr-6 bg-white p-4 shadow rounded-lg w-[250px] max-h-[400px] overflow-auto mx-auto md:mx-0">
+    <% flash.each do |key, message| %>
+      <div class="p-4 mt-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-white-800" role="notice">
+        <span class="font-medium"><%= message %></span>
+      </div>
+    <% end %>
+    <div class="ml-4">
+      <% if @user.profile_image.present? %>
+        <%= image_tag @user.profile_image, alt: "アイコン", class: "w-8 h-8 rounded-full" %>
+      <% end %>
+      <p class="text-sm mb-2"><%= @user.name %></p>
     </div>
-    <%= link_to 'プロフィール編集', edit_user_path(current_user), class: "mt-4 px-3 py-2 bg-blue-500 text-white rounded text-sm" %>
+    <div class="mt-2 ml-4">
+      <p class="text-sm text-gray-600 leading-relaxed break-words"><%= @user.introduction %></p>
+    </div>
+    <div class="flex space-x-4 text-sm mt-2 ml-4 mb-2">
+      <div class="text-center">
+        <%= link_to following_user_path(@user), class: "text-gray-700 hover:text-gray-900 block" do %>
+          <span>フォロー中</span>
+          <div class="text-sm font-normal"><%= @user.followings.count %></div>
+        <% end %>
+      </div>
+      <div class="text-center">
+        <%= link_to followers_user_path(@user), class: "text-gray-700 hover:text-gray-900 block" do %>
+          <span>フォロワー</span>
+          <div class="text-sm font-normal"><%= @user.followers.count %></div>
+        <% end %>
+      </div>
+    </div>
+    <% if @user == current_user %>
+      <div class="mt-4 ml-4">
+        <%= link_to "プロフィールを編集", edit_user_path(current_user), class: "px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 text-sm" %>
+      </div>
+    <% end %>
   </div>
-  <div class="flex-1 bg-white p-4 shadow rounded-lg">
-    <h3 class="text-xl font-bold mb-4">フォロワー</h3>
-    <div class="flex flex-col">
-
+  <div class="flex flex-col bg-white w-full">
+    <h2 class="text-xl font-bold px-6 py-3 text-gray-700 dark:text-neutral-200">フォロワー</h2>
+    <div class="-m-1.5 overflow-x-auto">
+      <div class="p-1.5 min-w-full inline-block align-middle">
+        <div class="overflow-hidden">
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+            <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+              <% @followers.each do |follower| %>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
+                    <div class="flex items-center space-x-2 group">
+                      <%= link_to user_path(follower), class: "flex items-center space-x-2 group-hover:bg-gray-100 p-2 rounded-lg transition duration-200" do %>
+                        <% if follower.profile_image.present? %>
+                          <%= image_tag follower.profile_image, alt: "アイコン", class: "w-8 h-8 rounded-full group-hover:opacity-80 transition duration-200" %>
+                        <% end %>
+                        <span class="group-hover:text-blue-500 transition duration-200"><%= follower.name %></span>
+                      <% end %>
+                      <% if current_user.following?(follower) %>
+                        <%= button_to 'フォローを外す', follow_path(follower), method: :delete, class: "ml-auto px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition duration-200" %>
+                      <% else %>
+                        <%= button_to 'フォローする', follows_path(followed_id: follower.id), method: :post, class: "ml-auto px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200" %>
+                      <% end %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -23,6 +23,10 @@ class User < ApplicationRecord
     liked_builds.include?(build)
   end
 
+  def following?(other_user)
+    followings.include?(other_user)
+  end
+
   private
 
   def validate_profile_image
