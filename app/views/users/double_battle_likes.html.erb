@@ -28,6 +28,15 @@
         <% end %>
       </div>
     </div>
+    <div class="flex space-x-4 text-sm mt-2 ml-4 mb-2">
+      <% if current_user != @user %>
+        <% if current_user.following?(@user) %>
+          <%= button_to 'フォローを外す', user_follow_path(@user), method: :delete, class: "ml-auto px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition duration-200" %>
+        <% else %>
+          <%= button_to 'フォローする', user_follow_path(@user), method: :post, class: "ml-auto px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200" %>
+        <% end %>
+      <% end %>
+    </div>
     <% if @user == current_user %>
       <div class="mt-4 ml-4">
         <%= link_to "プロフィールを編集", edit_user_path(current_user), class: "px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 text-sm" %>
