@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: %i[show edit update mypage private_builds public_double_builds private_double_builds single_battle_likes double_battle_likes]
+  before_action :require_login, only: %i[show edit update mypage private_builds public_double_builds private_double_builds single_battle_likes double_battle_likes followers following]
   before_action :set_user, only: %i[show edit update mypage private_builds public_double_builds private_double_builds single_battle_likes double_battle_likes followers following]
   before_action :correct_user, only: %i[edit update mypage private_builds private_double_builds]
 
