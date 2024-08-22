@@ -174,6 +174,14 @@ RSpec.describe 'Builds', type: :system do
         expect(build.title).to eq('新しいタイトル')
         expect(build.introduction).to eq('新しい紹介')
       end
+
+      it '構築記事を削除できる' do
+        click_button '構築記事を削除'
+        page.driver.browser.switch_to.alert.accept
+        expect(page).to have_current_path(mypage_user_path(user))
+        expect(page).to have_content('構築記事が削除されました。')
+        expect(Build.exists?(build.id)).to be_falsey
+      end
     end
 
     context 'ログインしていない場合' do
