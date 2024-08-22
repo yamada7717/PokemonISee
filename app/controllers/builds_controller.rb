@@ -1,7 +1,7 @@
 class BuildsController < ApplicationController
   before_action :require_login
-  before_action :set_build, only: %i[show edit update]
-  before_action :correct_build_user, only: %i[edit update]
+  before_action :set_build, only: %i[show edit update destroy]
+  before_action :correct_build_user, only: %i[edit update destroy]
   def index
     @pagy, @builds = pagy(Build.where(is_public: true, battle_type: 'シングル').order(created_at: :desc), limit: 10)
 
@@ -67,6 +67,11 @@ class BuildsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @build.destroy
+    redirect_to mypage_user_path(current_user), notice: '構築記事が削除されました。'
   end
 
   private
