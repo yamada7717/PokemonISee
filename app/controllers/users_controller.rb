@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: %i[show edit update mypage private_builds public_double_builds private_double_builds single_battle_likes double_battle_likes followers following]
-  before_action :set_user, only: %i[show edit update mypage private_builds public_double_builds private_double_builds single_battle_likes double_battle_likes followers following]
-  before_action :correct_user, only: %i[edit update mypage private_builds private_double_builds]
+  before_action :require_login, only: %i[show edit destroy update mypage private_builds public_double_builds private_double_builds single_battle_likes double_battle_likes followers following]
+  before_action :set_user, only: %i[show edit update destroy mypage private_builds public_double_builds private_double_builds single_battle_likes double_battle_likes followers following]
+  before_action :correct_user, only: %i[edit update destroy mypage private_builds private_double_builds]
 
   def show
     @pagy, @builds = pagy(@user.builds.where(is_public: true, battle_type: 'シングル').order(created_at: :desc), limit: 10)
@@ -74,6 +74,11 @@ class UsersController < ApplicationController
   def following
     @pagy, @followings = pagy(@user.followings.order(created_at: :desc), items: 30)
     @followings_count = @followings.count
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to root_path, notice: "ユーザー情報を削除しました、ご利用ありがとうございました。"
   end
 
   private
