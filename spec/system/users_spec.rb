@@ -99,6 +99,14 @@ RSpec.describe 'User', type: :system do
         expect(user.name).to eq("更新後のユーザー名")
         expect(user.introduction).to eq("更新後の自己紹介")
       end
+
+      it 'アカウントが削除できる' do
+        click_button 'アカウントを削除'
+        page.driver.browser.switch_to.alert.accept
+        sleep 1
+        expect(current_path).to eq(root_path)
+        expect(User.exists?(user.id)).to be_falsey
+      end
     end
 
     context 'ログインしていない場合' do

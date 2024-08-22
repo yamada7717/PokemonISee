@@ -78,6 +78,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    reset_session
     redirect_to root_path, notice: "ユーザー情報を削除しました、ご利用ありがとうございました。"
   end
 
