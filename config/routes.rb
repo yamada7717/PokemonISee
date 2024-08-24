@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  get 'follows/create'
-  get 'follows/destroy'
   root 'tops#index'
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
   get 'logout', to: 'user_sessions#destroy'
   get '/users', to: redirect('/users/new')
+  get 'follows/create'
+  get 'follows/destroy'
   resources :users, only: %i[new create show edit update destroy] do
     member do
       get :mypage
@@ -26,4 +26,7 @@ Rails.application.routes.draw do
     resources :pokemon_parties, only: %i[new edit create destroy]
     resource :like, only: [:create, :destroy]
   end
+  get '/404', to: 'errors#not_found', as: :not_found
+  get '/500', to: 'errors#internal_server_error', as: :internal_server_error
+  match '*path', to: 'errors#not_found', via: :all
 end
