@@ -52,3 +52,5 @@ ja:
         pokemon_party:
             base:
               pokemon_limit: "ポケモンは6体までしか登録できません。"
+  defaults:
+    password_reset: "【PokemonISee】パスワードリセットのご案内"
