@@ -18,6 +18,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:password] }
   validates :introduction, length: { maximum: 255 }, allow_blank: true
   validate :validate_profile_image, if: -> { profile_image.attached? }
+  validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
 
   def liked?(build)
     liked_builds.include?(build)

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/users', to: redirect('/users/new')
   get 'follows/create'
   get 'follows/destroy'
+  resources :password_resets, only: %i[create edit update]
   resources :users, only: %i[new create show edit update destroy] do
     member do
       get :mypage
