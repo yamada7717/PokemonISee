@@ -35,3 +35,7 @@
 
 # 環境変数を含むファイルを無視
 .env
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
