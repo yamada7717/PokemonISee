@@ -1,6 +1,6 @@
-<div class="container mx-auto p-6 bg-white mt-[124px]">
-  <h2 class="text-xl font-bold text-gray-900">パスワードをリセット</h2>
-  <%= form_with(url: password_reset_path(@token), method: :patch, local: true) do |form| %>
+<div class="container mx-auto max-w-md p-6 bg-white mt-[124px]">
+  <h2 class="text-xl font-bold text-gray-900">パスワードを変更する</h2>
+  <%= form_with(model: @user, url: password_reset_path(@token), method: :put, local: true, data: { turbo: false }) do |form| %>
     <div class="mt-4">
       <%= form.label :password, "新しいパスワード", class: "block text-sm font-medium text-gray-700" %>
       <%= form.password_field :password, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: "新しいパスワードを入力してください" %>
@@ -10,7 +10,7 @@
       <%= form.password_field :password_confirmation, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: "パスワードをもう一度入力してください" %>
     </div>
     <div class="mt-6 flex items-center justify-end gap-x-6">
-      <%= form.submit "リセット", class: "rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700" %>
+      <%= form.submit "変更する", class: "rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700" %>
     </div>
   <% end %>
 </div>
