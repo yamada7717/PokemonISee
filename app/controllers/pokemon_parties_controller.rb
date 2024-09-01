@@ -8,7 +8,7 @@ class PokemonPartiesController < ApplicationController
     search_query = params[:search].tr('　', ' ').strip.gsub(/\s+/, '')
 
     if search_query.length < 2
-      redirect_to new_build_pokemon_party_path, notice: '検索結果が得られませんでした'
+      redirect_to new_build_pokemon_party_path, alert: '検索結果が得られませんでした'
       return
     end
 
