@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   root 'tops#index'
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
-  get 'logout', to: 'user_sessions#destroy'
+  post 'guest_login', to: 'user_sessions#guest_login'
+  delete 'logout', to: 'user_sessions#destroy'
   get '/users', to: redirect('/users/new')
   get 'follows/create'
   get 'follows/destroy'

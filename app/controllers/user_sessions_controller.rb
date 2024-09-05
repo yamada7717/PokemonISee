@@ -15,8 +15,28 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  def guest_login
+    @guest_user = User.create(
+      name: 'ゲストユーザー',
+      email: "guest_#{SecureRandom.uuid}@example.com",
+      password: 'password',
+      password_confirmation: 'password'
+    )
+    auto_login(@guest_user)
+    redirect_to root_path, notice: 'ゲストログインしました'
+  end
+
   def destroy
+    user = current_user
     logout
-    redirect_to root_path
+
+    if user.email.start_with?('guest_')
+      user.destroy
+      flash[:notice] = 'ゲストユーザーをログアウトし、アカウントを削除しました。'
+    else
+      flash[:notice] = 'ログアウトしました。'
+    end
+
+    redirect_to root_path, status: :see_other, notice: 'ログアウトしました'
   end
 end
