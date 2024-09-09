@@ -15,6 +15,7 @@ RSpec.describe 'UserSessions', type: :system do
         expect(current_path).to eq(root_path)
       end
     end
+
     context 'フォームの入力値が異常なとき' do
       it 'ログインが失敗する' do
         visit login_path

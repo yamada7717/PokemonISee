@@ -32,8 +32,6 @@ class UserSessionsController < ApplicationController
 
     if user.email.start_with?('guest_')
       user.destroy
-      flash[:notice] = 'ゲストユーザーをログアウトし、アカウントを削除しました。'
-    else
       flash[:notice] = 'ログアウトしました。'
     end
 

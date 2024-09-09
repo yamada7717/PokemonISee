@@ -27,6 +27,10 @@ RSpec.describe "UserSessions", type: :request do
   end
 
   describe 'ログアウトする際' do
+    before do
+      post login_path, params: { email: user.email, password: 'password123', password_confirmation: 'password123' }
+    end
+
     it 'ログアウトに成功し、TOPページにリダイレクトされること' do
       get logout_path
       expect(response).to redirect_to(root_path)
