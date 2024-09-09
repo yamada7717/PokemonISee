@@ -32,7 +32,7 @@ RSpec.describe "UserSessions", type: :request do
     end
 
     it 'ログアウトに成功し、TOPページにリダイレクトされること' do
-      get logout_path
+      delete logout_path
       expect(response).to redirect_to(root_path)
       expect(session[:user_id]).to be_nil
     end
