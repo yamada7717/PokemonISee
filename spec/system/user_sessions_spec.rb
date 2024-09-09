@@ -28,4 +28,28 @@ RSpec.describe 'UserSessions', type: :system do
       end
     end
   end
+
+  describe 'ゲストログイン機能' do
+    context 'ゲストユーザーとしてログインする' do
+      it 'ゲストログインが成功する' do
+        visit root_path
+        click_link 'ゲストログイン'
+        expect(page).to have_content 'ゲストログインしました'
+        expect(current_path).to eq(root_path)
+      end
+    end
+
+    context 'ゲストユーザーがログアウトする' do
+      it 'ゲストユーザーのログアウトに成功し、アカウントが削除される' do
+        visit root_path
+        click_link 'ゲストログイン'
+        expect(page).to have_content 'ゲストログインしました'
+        find('button.dropdown-button').click
+
+        click_link 'ログアウト'
+        expect(page).to have_content 'ログアウトしました'
+        expect(current_path).to eq(root_path)
+      end
+    end
+  end
 end
