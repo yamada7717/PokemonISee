@@ -40,7 +40,7 @@ RSpec.describe 'UserSessions', type: :system do
     end
 
     context 'ゲストユーザーがログアウトする' do
-      it 'ゲストユーザーのログアウトに成功し、アカウントが削除される' do
+      it 'ゲストユーザーのログアウトに成功する' do
         visit root_path
         click_link 'ゲストログイン'
         expect(page).to have_content 'ゲストログインしました'
