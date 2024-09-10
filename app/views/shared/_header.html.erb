@@ -4,7 +4,8 @@
       <h1 class="ml-3 text-xl">PokemonISee</h1>
     <% end %>
     <% if logged_in? %>
-      <%= link_to "構築記事一覧", builds_path, class: "md:ml-10 rounded-lg px-4 py-2 text-center text-sm text-gray-600 bg-gray-200 hover:text-gray-800 mb-2 md:mb-0 md:mr-2" %>
+      <%= link_to "シングルバトル構築記事", builds_path, class: "md:ml-10 rounded-lg px-4 py-2 text-center text-sm text-gray-600 bg-gray-200 hover:text-gray-800 mb-2 md:mb-0 md:mr-2 " %>
+      <%= link_to "ダブルバトル構築記事", double_battles_builds_path, class: "rounded-lg px-4 py-2 text-center text-sm text-gray-600 bg-gray-200 hover:text-gray-800 mb-2 md:mb-0 md:mr-2" %>
     <% end %>
     <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
       <% if logged_in? %>
