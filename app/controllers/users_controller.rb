@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   end
 
   def mypage
-    @pagy, @builds = pagy(@user.builds.order(created_at: :desc), limit: 10)
+    @pagy, @builds = pagy(@user.builds.where(is_public: true, battle_type: 'シングル').order(created_at: :desc), limit: 10)
   end
 
   def private_builds
