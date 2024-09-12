@@ -45,7 +45,7 @@ PokemonISee
 - **ユーザー毎のカスタマイズ**: 各バトル形式に対応する記事を個別にコンテンツとしてまとめることで、ユーザーが自分に合った戦略や情報を簡単に見つけられるよう工夫しました。
 
 
-https://github.com/user-attachments/assets/bb613952-7ba5-4604-a322-1e0db1e3fb45
+https://github.com/user-attachments/assets/70dfb5d5-2be5-4fe4-93f5-6960556a637b
 
 ### ポケモンパーティー登録
 #### ポケモンパーティ登録時の工夫点
