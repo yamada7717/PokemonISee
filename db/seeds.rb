@@ -1,7 +1,12 @@
-require 'json'
+# db/seeds.rb
 
-pokemon_data = JSON.parse(File.read(Rails.root.join('db', 'pokemon_sv.json')))
+usernames = ["サトシ", "カスミ", "タケシ", "ハルカ", "ヒカリ", "セレナ", "シロナ", "レッド", "グリーン", "サカキ"]
 
-pokemon_data.each do |pokemon|
-  Pokemon.create(japanese_name: pokemon['ja'], english_name: pokemon['en'])
+10.times do |i|
+  User.create!(
+    name: usernames[i],
+    email: "user#{i}@example.com",
+    password: "password",
+    password_confirmation: "password"
+  )
 end
