@@ -16,9 +16,11 @@ class UserSessionsController < ApplicationController
   end
 
   def guest_login
-    @guest_user = User.create(
+    @guest_user = User.find_by(email: 'guest@example.com')
+
+    @guest_user ||= User.create!(
       name: 'ゲストユーザー',
-      email: "guest_#{SecureRandom.uuid}@example.com",
+      email: 'guest@example.com',
       password: 'password',
       password_confirmation: 'password'
     )
